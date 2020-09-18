@@ -53,7 +53,7 @@ server.post("/principal", (req, res) =>{
         if(!err){
             if(rows.length > 0){
                 //console.log(rows)
-                res.sendFile(__dirname + "/src/initialGestaoFuncionario.html")
+                res.sendFile(__dirname + "/src/principalFunc.html")
             }else{
                 res.sendFile(__dirname + "/src/index2.html")
             }
