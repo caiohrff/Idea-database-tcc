@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+    box-sizing: border-box;
+}
+
+html{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    color: #000000;
+}
+
+#pagina-principal{
+    height: 100vh;
+    background: url('../img/fundoLogin.svg') no-repeat;
+    background-position: 35vw bottom;
+
+}
+
+#pagina-principal img{
+    display: flex;
+
+    width: 60px;
+    height: 60px;
+}
+
+#pagina-principal .CabecaTop{
+    display: flex;
+    align-items: center;
+ 
+    margin: 40px;
+}
+
+#pagina-principal h3{
+    font-weight: normal;
+    font-size: 28px;
+
+    margin-left: 20px;
+}
+
+#pagina-principal p{
+    display: flex;
+    align-items: center;
+}
+
+form .fieldText label{
+
+    font-size: 25px;
+
+    margin-right: 40px;
+    margin-bottom: 24px;
+}
+
+
+form .fieldPassword label{
+
+    font-size: 25px;
+
+    margin-right: 35px;
+    margin-bottom: 24px;
+}
+
+form button{
+
+    width: 136px;
+    height: 35px;
+
+
+    background-color: #000000;
+    border-radius: 5px;
+
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+
+    border: 0;
+
+    margin-left: 20%;
+ 
+    cursor:pointer;
+
+    position: absolute;
+    top: 60%;
+    left: 15px;
+}
+
+form .FieldLogin{
+    margin: 10%;
+    align-items: center;
+}
+
+form .FieldLogin{
+    margin: 10%;
+    
+}
+
+#imagemFundo .imgLogin{
+    width: 600px;
+    height: 488px;
+
+    position: absolute;
+    left: 45%;
+	top: 10%
+}
+
+
+/*ESTILO INPUTS*/
+input[type=text]{   
+    border-radius:4px;
+    background: #C4C4C4; 
+
+    width: 200px;
+    height: 35px;
+
+    border: 2px;
+    font-size: 16px;
+    margin: 12px;
+    border-color: #000000;
+}
+
+
+input[type=password]{   
+    border-radius:4px;
+    background: #C4C4C4; 
+
+    width: 200px;
+    height: 35px;
+
+    border: 2px;
+    font-size: 16px;
+    margin: 12px;
+    border-color: #000000;
+}
+
+.LostPassword{
+    position: absolute;
+
+    left: 22.6%;
+    top: 54%;
+
+    font-size: 11px;
+    color: #000000;
+}    
+
+.LostPassword:hover{
+    color: red;
+    transform: 400ms;
+}
+
+/*CABEÇAHO COM ABOUT US / CONTATO / SERVIÇOS*/
+
+.aboutProject{
+    position: absolute;
+
+    left: 70%;
+    top: 8%;
+
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 21px;
+    color: #000000;
+
+    cursor: pointer;
+    
+
+}
+
+.aboutProject a:link{
+    text-decoration: none;
+}
+
+.aboutProject:hover{
+    text-decoration: underline;
+}
+
+
+.contact{
+    position: absolute;
+
+    left: 80%;
+    top: 8%;
+
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 21px;
+
+    cursor: pointer;
+}
+
+.contact a:link{
+    text-decoration: none;
+}
+
+.contact:hover{
+    text-decoration: underline;
+}
+
+.services{
+    position: absolute;
+
+    left: 90%;
+    top: 8%;
+
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 21px;
+
+    cursor: pointer;
+
+}
+
+.services a:link{
+    text-decoration: none;
+}
+
+.services:hover{
+    text-decoration: underline;
+}
+/* 
+.footerIndex{
+    color: red;
+
+    top: 10%;
+} */
+/*FIM CABEÇALHO*/

@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+    box-sizing: border-box;
+}
+
+html{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #000000;
+}
+
+#principal{
+    height: 100vh;
+    background: url('../img/fundoLogin.svg') no-repeat;
+    background-position: 35vw bottom;
+}
+
+h4{
+    display: flex;
+
+    justify-content: center;
+
+    font-family: Ubuntu, sans-serif;
+    font-weight: lighter;
+    font-size: 20px;
+}
+
+#principal img{
+    display: flex;
+
+    width: 60px;
+    height: 60px;
+}
+
+#principal .headerTop{
+    display: flex;
+    align-items: center;
+ 
+    margin: 40px;
+}
+
+#principal h3{
+    font-weight: normal;
+    font-size: 28px;
+
+    margin-left: 20px;
+}
+
+#principal p{
+    display: flex;
+    align-items: center;
+}
+
+#imagemFundoPrincipal .imgLogin{
+    width: 600px;
+    height: 488px;
+
+    position: absolute;
+    left: 45%;
+	top: 20%;
+}
+
+.exit img{
+    width: 28px;
+    height: 23px;
+
+    position: absolute;
+    right: 7.6%;
+    top: 60px;
+
+    cursor: pointer;
+}
+
+.exit2{
+    width: 28px;
+    height: 23px;
+
+    position: absolute;
+    right: 5.5%;
+    top: 63px;
+
+    cursor: pointer;
+}
+
+.exit2 a:link{
+    text-decoration: none;
+}
+
+#botoesOpcao button{
+    width: 115px;
+    height: 122px;
+    
+    margin: 20px;
+    border-radius: 6px;
+    border: #ECECEC;
+
+    background-color: #ECECEC;
+
+
+    cursor: pointer;
+}
+
+#botoesOpcao{
+    margin-top: 3.5%;
+    margin-left: 2%;
+}
+
+#botoesOpcao button:hover{
+
+    background-color: #F2F2F2;
+    
+    transition: background-color 400ms;
+}
+
+#botoesOpcao img{
+    width: 75px;
+    height: 75px;
+}
+
+.FontePosicaoBotao{
+    font-family: Ubuntu, sans-serif;
+    font-weight: normal;
+    font-size: 18px;   
+}
+
+.FontePosicaoBotao a:link{
+    text-decoration: none;
+}
