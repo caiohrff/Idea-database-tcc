@@ -154,7 +154,7 @@ form input{
 
     border-radius: 8px;
 
-    width: 150px;
+    width: 200px;
     height: 21px;
 }
 
@@ -289,9 +289,18 @@ form .input-detalhes{
    padding: 40px;
 }
 
-/* form .label-detalhes{
+form .StyleSpanForm{
+    color: #000000;
 
-} */
+    position: absolute;
+
+    top: 15%;
+    align-items: center;
+    margin: 10px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
 /* END FORM*/
 
 
