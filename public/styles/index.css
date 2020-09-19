@@ -6,14 +6,18 @@
 }
 
 html{
+
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
+
     color: #000000;
 }
 
 #pagina-principal{
     height: 100vh;
+
     background: url('../img/fundoLogin.svg') no-repeat;
+
     background-position: 35vw bottom;
 
 }
@@ -41,6 +45,7 @@ html{
 
 #pagina-principal p{
     display: flex;
+
     align-items: center;
 }
 
@@ -68,31 +73,29 @@ form button{
 
 
     background-color: #000000;
-    border-radius: 5px;
 
     color: white;
+
     font-weight: bold;
     font-size: 18px;
 
     border: 0;
+    border-radius: 5px;
 
     margin-left: 20%;
  
     cursor:pointer;
 
     position: absolute;
+
     top: 60%;
     left: 15px;
 }
 
 form .FieldLogin{
     margin: 10%;
-    align-items: center;
-}
 
-form .FieldLogin{
-    margin: 10%;
-    
+    align-items: center;
 }
 
 #imagemFundo .imgLogin{
@@ -100,6 +103,7 @@ form .FieldLogin{
     height: 488px;
 
     position: absolute;
+
     left: 45%;
 	top: 10%
 }
@@ -107,30 +111,36 @@ form .FieldLogin{
 
 /*ESTILO INPUTS*/
 input[type=text]{   
+
     border-radius:4px;
+    border: 2px;
+    margin: 12px;
+    border-color: #000000;
+
     background: #C4C4C4; 
 
     width: 200px;
     height: 35px;
 
-    border: 2px;
+
     font-size: 16px;
-    margin: 12px;
-    border-color: #000000;
 }
 
 
 input[type=password]{   
+
     border-radius:4px;
+    border: 2px;
+    border-color: #000000;
+
     background: #C4C4C4; 
 
     width: 200px;
     height: 35px;
 
-    border: 2px;
     font-size: 16px;
+
     margin: 12px;
-    border-color: #000000;
 }
 
 .LostPassword{
@@ -140,11 +150,13 @@ input[type=password]{
     top: 54%;
 
     font-size: 11px;
+
     color: #000000;
 }    
 
 .LostPassword:hover{
     color: red;
+
     transform: 400ms;
 }
 
@@ -163,8 +175,6 @@ input[type=password]{
     color: #000000;
 
     cursor: pointer;
-    
-
 }
 
 .aboutProject a:link{
@@ -174,7 +184,6 @@ input[type=password]{
 .aboutProject:hover{
     text-decoration: underline;
 }
-
 
 .contact{
     position: absolute;
@@ -220,10 +229,3 @@ input[type=password]{
 .services:hover{
     text-decoration: underline;
 }
-/* 
-.footerIndex{
-    color: red;
-
-    top: 10%;
-} */
-/*FIM CABEÇALHO*/

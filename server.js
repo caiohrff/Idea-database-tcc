@@ -25,7 +25,7 @@ mysqlConnection.connect((err) =>{
 /*END CONNECTION*/
 
 
-server.use(express.static("public")) //configurando a pasta com nome "PUBLIC", colocando tudo necessário como CSS, SCRIPTS E IMAGENS
+server.use(express.static("public"))
 server.use(express.urlencoded({extended: true}))
 
 //ROUTS
@@ -52,7 +52,6 @@ server.post("/principal", (req, res) =>{
     mysqlConnection.query('SELECT EmpUser FROM employee WHERE EmpUser = "' + user +'" AND EmpPassword = "' + pass +'"',  (err, rows, field) =>{
         if(!err){
             if(rows.length > 0){
-                //console.log(rows)
                 res.sendFile(__dirname + "/src/principalFunc.html")
             }else{
                 res.sendFile(__dirname + "/src/index2.html")
@@ -79,10 +78,9 @@ server.post("/resultadoformulario", (req, res) =>{
             }else{
                 console.log(err)
             }
-          });
-    //res.sendFile(__dirname + "/src/enviado.html")
+          })
     })
-// end routs
+// END ROUTS
 
 
 server.listen(3000, ()=>{
