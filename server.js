@@ -48,11 +48,18 @@ server.get("/index", (req, res) =>{
 server.post("/principal", (req, res) =>{
     const user = req.body.nome
     const pass = req.body.senha
+
     
-    mysqlConnection.query('SELECT EmpUser FROM employee WHERE EmpUser = "' + user +'" AND EmpPassword = "' + pass +'"',  (err, rows, field) =>{
+    mysqlConnection.query('SELECT EmpUser, EmpDepartament FROM employee WHERE EmpUser = "' + user +'" AND EmpPassword = "' + pass +'"',  (err, rows, field) =>{
+       rows[0].EmpDepartament
+
         if(!err){
             if(rows.length > 0){
-                res.sendFile(__dirname + "/src/principalFunc.html")
+                        if(rows[0].EmpDepartament === 'Tecnologia' || rows[0].EmpDepartament === 'Gestor da inovacao'){
+                             res.sendFile(__dirname + "/src/principalGestor.html")
+                        }else{
+                             res.sendFile(__dirname + "/src/principalFunc.html")
+                        }
             }else{
                 res.sendFile(__dirname + "/src/index2.html")
             }
