@@ -2,8 +2,15 @@ const express = require('express')
 const server = express()
 const mysql = require('mysql')
 const bodyParser = require('body-parser')
+const nunjucks = require('nunjucks')
 
 server.use(bodyParser.json())
+
+nunjucks.configure('src/views', {
+    autoescape: true,
+    express: server,
+    watch: true,
+})
 
 /*CONNECTION*/
 const mysqlConnection = mysql.createConnection({
@@ -27,6 +34,7 @@ mysqlConnection.connect((err) =>{
 
 server.use(express.static("public"))
 server.use(express.urlencoded({extended: true}))
+server.set('view engine', '.njk')
 
 //ROUTS
 
@@ -43,6 +51,30 @@ server.get("/formulario", (req, res) =>{
 server.get("/index", (req, res) =>{
     res.sendFile(__dirname + "/src/index.html")
 })
+
+/* TESTE NUNJUCKS*/
+
+server.get('/resultado', (req, res) =>{
+
+    mysqlConnection.query('SELECT FormDetalhes FROM ideasform', (err, rows) => {
+
+            const resultado = JSON.stringify(rows)
+            const json = JSON.parse(resultado)
+            console.log(json)    
+
+        if(!err){
+            const total = rows.length
+            return res.render('telaResultado', { result: json, total: total})
+           
+        }else{
+            console.log(err)
+        }
+      })
+    
+})
+
+
+/* END TESTE NUNJUCKS*/
 
 
 server.post("/principal", (req, res) =>{
@@ -82,6 +114,8 @@ server.post("/resultadoformulario", (req, res) =>{
         mysqlConnection.query('INSERT INTO ideasform SET ?', DadosForm,(err, rows) => {
             if(!err){
                 console.log('INSERIDO')
+                //SWEETALERT
+                
             }else{
                 console.log(err)
             }
