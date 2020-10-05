@@ -135,14 +135,16 @@ server.post("/resultadoformulario", (req, res) =>{
         funcao: req.body.funcaoExercicio,
         admissao: req.body.DataAdmissao,
         demissao: req.body.DataDemissao,
+
         custoAnual: req.body.custoAnual,
         custoHora: req.body.custoHora,
         horasPD: req.body.horasPD,
         custo: req.body.custoPD
        }
        //Exibindo no console os dados brutos do req.body
-
+       //UMA SAÍDA É USAR O MAP OU ALGO PARA QUEBRAR ESSES ARRAYS E PERSISTIR OS DADOS
        console.log(req.body)
+       console.log(dadosRH)
     })
 
 // END ROUTS
