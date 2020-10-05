@@ -1,0 +1,325 @@
+* { 
+    margin: 0;
+    padding: 0;
+    
+    box-sizing: border-box;
+}
+
+/*AJUSTAR O CSS APÓS A TELA ESTAR FUNCIONANDO*/
+html{
+
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+
+    color: #000000;
+
+    width: 100%;
+    height:100%;
+}
+
+#pagina-form .CabecaTop{
+    display: flex;
+    align-items: center;
+ 
+    margin: 26px;
+}
+
+#pagina-form img{
+    display: flex;
+
+    width: 55px;
+    height: 55px;
+}
+
+
+#pagina-form h3{
+    font-weight: normal;
+    font-size: 23px;
+
+    margin-left: 20px;
+    
+}
+
+
+body{
+
+   
+    color: #000000;
+
+    font-family: 'Ubuntu', sans-serif;
+
+    display: table;
+
+    font-family: 'Ubuntu', sans-serif;
+
+    height: 100%;
+    width: 100%;
+}
+
+#formIdeia{
+    position: absolute;
+
+    width: 460px;
+    height: 548px;
+
+    background: #FFFFFF;
+
+    left: 55%;
+    top: 14%;
+}
+
+.circuloBranco{
+
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    background-color: #ffffff;
+
+    top: 5%;
+    left: 67%;
+
+    border-radius: 75px;
+}
+
+#circuloAzul{
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    background-color: #79A3F8;
+
+    top: 42.3px;
+    left: 921px;
+
+    border-radius: 76px; 
+
+    left: 925.4px;
+
+    border-radius: 76px;
+
+}
+
+#icoBody .icoImgBody{
+    width: 600px;
+    height: 488px;
+
+    position: absolute;
+
+    left: 5%;
+    top: 10%
+    
+}
+
+/* START FORM*/
+
+
+form{
+    text-align: justify;
+
+    border: 1px;
+    padding: 15px;
+
+    height: 100%;
+    width: 100%;
+}
+
+.formIdeia input{
+    background-color: #C4C4C4;
+
+    border: 0;
+
+    padding: 16px 24px;
+
+    font-size: 16px;
+
+    border-radius: 8px;
+
+    width: 200px;
+
+    height: 21px;
+}
+
+form label{
+    font-size: 17px;
+
+    margin-bottom: 8px;
+
+    color: #000000;
+
+
+}
+
+form input{
+    background-color:#C4C4C4;
+
+    border: 0;
+    padding: 16px 24px;
+    font-size: 16px;
+
+    border-radius: 8px;
+
+    width: 200px;
+    height: 21px;
+}
+
+form{
+    text-align: justify;
+    border: 1px;
+}
+
+form .field{
+    margin-bottom: 24px;
+}
+
+form .fieldDetalhes{
+  
+    margin-bottom: 24px;   
+}
+
+
+form button{
+
+    position: absolute;
+
+    width: 120px;
+    height: 30px;
+
+    background-color: #000000;
+    border-radius: 5px;
+
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+
+    border: 0;
+ 
+    cursor:pointer;
+
+    top: 500px;
+    left: 40%;
+
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: lighter;
+}
+
+form .allFields{
+    width: 100%;
+    height: 100%;
+}
+
+form .fieldRA{
+    margin: 10px;
+
+    position: relative;
+
+    top: 25%;
+}
+
+form .fieldNome{
+    margin: 10px;
+
+    position: relative;
+
+    top: 25%;
+
+}
+
+form .fieldSetor{
+    margin: 10px;
+
+    position: relative;
+
+    top: 25%;
+}
+
+form .fieldCargo{
+    margin: 10px;
+
+    position: relative;
+
+    top: 25%;
+}
+
+form .fieldAssunto{
+    margin: 10px;
+
+    position: relative;
+
+    top: 25%;
+}
+
+form .fieldDetalhes{
+    margin: 10px;
+
+    position: relative;
+
+    top: 25%;
+}
+
+form .input-RA{
+    margin-left: 58px;
+}
+
+
+form .input-nome{
+    margin-left: 35.5px;
+}
+
+
+form .input-setor{
+    margin-left: 38px;
+}
+
+
+form .input-cargo{
+    margin-left: 32px;
+}
+
+
+form .input-assunto{
+    margin-left: 13px;
+}
+
+
+form .input-detalhes{
+   margin-left: 10px;
+   padding: 40px;
+}
+
+form .StyleSpanForm{
+    color: #000000;
+
+    position: absolute;
+
+    top: 15%;
+    align-items: center;
+    margin: 10px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+/* END FORM*/
+
+#imgPrincipalBody .imgFormPrincipal {
+    width: 590px;
+    height: 590px;
+
+    position: absolute;
+    
+    left: 5%;
+    top: 9%;
+}
+
+#circuloAzul img{
+    display: block;
+
+    /*topo | direita | inferior | esquerda*/
+    margin: 18px auto 0 18px;
+
+    width: 80px;
+    height: 80px;
+}
+

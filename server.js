@@ -52,8 +52,7 @@ server.get("/index", (req, res) =>{
     res.sendFile(__dirname + "/src/index.html")
 })
 
-/* TESTE NUNJUCKS*/
-
+//Resultado de ideias do usuário. - Inserir filtro futuramente
 server.get('/resultado', (req, res) =>{
 
     mysqlConnection.query('SELECT FormDetalhes FROM ideasform', (err, rows) => {
@@ -72,10 +71,6 @@ server.get('/resultado', (req, res) =>{
       })
     
 })
-
-
-/* END TESTE NUNJUCKS*/
-
 
 server.post("/principal", (req, res) =>{
     const user = req.body.nome
@@ -121,6 +116,35 @@ server.post("/resultadoformulario", (req, res) =>{
             }
           })
     })
+
+    server.get("/rh", (req, res) =>{
+        res.render('TelaRH.njk');
+    })
+
+    server.post("/rhResults", (req, res) =>{
+        // const totalPd = 
+        // const totaHorasPd = 
+        // const totalCustoAnual = 
+        // const totalHoras = 
+
+        const dadosRH = {
+        dedicacao: req.body.dedicacao,
+        formacao: req.body.formacao,
+        colaborador: req.body.colaborador,
+        CPF: req.body.cpf,
+        funcao: req.body.funcaoExercicio,
+        admissao: req.body.DataAdmissao,
+        demissao: req.body.DataDemissao,
+        custoAnual: req.body.custoAnual,
+        custoHora: req.body.custoHora,
+        horasPD: req.body.horasPD,
+        custo: req.body.custoPD
+       }
+       //Exibindo no console os dados brutos do req.body
+
+       console.log(req.body)
+    })
+
 // END ROUTS
 
 
