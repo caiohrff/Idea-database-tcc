@@ -122,10 +122,9 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.post("/rhResults", (req, res) =>{
-        // const totalPd = 
-        // const totaHorasPd = 
-        // const totalCustoAnual = 
-        // const totalHoras = 
+
+        let objResult01 = {}
+        let objResult02 = {}
 
         const dadosRH = {
         dedicacao: req.body.dedicacao,
@@ -135,16 +134,47 @@ server.post("/resultadoformulario", (req, res) =>{
         funcao: req.body.funcaoExercicio,
         admissao: req.body.DataAdmissao,
         demissao: req.body.DataDemissao,
-
         custoAnual: req.body.custoAnual,
         custoHora: req.body.custoHora,
         horasPD: req.body.horasPD,
         custo: req.body.custoPD
        }
-       //Exibindo no console os dados brutos do req.body
-       //UMA SAÍDA É USAR O MAP OU ALGO PARA QUEBRAR ESSES ARRAYS E PERSISTIR OS DADOS
-       console.log(req.body)
-       console.log(dadosRH)
+
+                        //SEQUENCIA DE INSERÇÃO NO BANCO
+                    // CPF: employeeCPF
+                    // NOME: employeeName
+                    // FUNÇÃO EX: variantType
+                    // FORMAÇÃO ACADEMICA: academicTraining
+                    // DATA ADMISSÃO: admissionDate
+                    // DATA DEMISSÃO: resignationDate
+                    // DEDICAÇÃO(PARCIAL OU EXCLUSIVA): dedication
+                    // CUSTO ANUAL: annualCost
+                    // CUSTO POR HORA: hoursCost
+                    // HORAS P&D: p&dHours
+                    // CUSTO P&D: p&dCost
+                    // ----------------------------------
+                    // CUSTO TOTAL P&D: totalP&dCost
+                    // CUSTO TOTAL P&D HORAS: totalP&dHours
+                    // CUSTO TOTAL ANUAL: totalAnualCost
+                    // HORAS TOTAIS: totalHours
+
+            Object.entries(dadosRH).forEach(([key, value]) => {
+                    if (Array.isArray(value)) {
+                        objResult01[key] = value[0]
+                        objResult02[key] = value[1]                
+                        }            
+                    })
+
+                        let custo = +(objResult01.custo.replace(/,/,'.'))
+                        let custo1 = +(objResult02.custo.replace(/,/,'.'))
+                        console.log(objResult01.custo)
+                        console.log(objResult02.custo)
+                        if(isNaN(custo) || isNaN(custo1)){
+                            console.log("VERIFIQUE")
+                        }else{
+                            let soma = custo + custo1
+                            console.log(soma)
+                        }
     })
 
 // END ROUTS
