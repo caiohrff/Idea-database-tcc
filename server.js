@@ -123,58 +123,50 @@ server.post("/resultadoformulario", (req, res) =>{
 
     server.post("/rhResults", (req, res) =>{
 
-        let objResult01 = {}
-        let objResult02 = {}
+        let dadosRH1 = {}
+        let dadosRH2 = {}  
+        
+            const dadosRH = {
+                employeeCPF: req.body.cpf,
+                employeeName: req.body.colaborador,
+                academicTraining: req.body.funcaoExercicio,
+                formacao: req.body.formacao,
+                admissionDate: req.body.DataAdmissao,
+                resignationDate: req.body.DataDemissao,
+                dedication: req.body.dedicacao,
+                annualCost: req.body.custoAnual,
+                hoursCost: req.body.custoHora,
+                pdHours: req.body.horasPD,
+                pdCost: req.body.custoPD, 
+           }
 
-        const dadosRH = {
-        dedicacao: req.body.dedicacao,
-        formacao: req.body.formacao,
-        colaborador: req.body.colaborador,
-        CPF: req.body.cpf,
-        funcao: req.body.funcaoExercicio,
-        admissao: req.body.DataAdmissao,
-        demissao: req.body.DataDemissao,
-        custoAnual: req.body.custoAnual,
-        custoHora: req.body.custoHora,
-        horasPD: req.body.horasPD,
-        custo: req.body.custoPD
-       }
+           //desestruturando o objeto principal em dois POIS AGORA NOSSA MANIPULAÇÃO É FEITA A PARTIR DOS OBJETOS: dadosRH1 | dadosRH2
+           Object.entries(dadosRH).forEach(([key, value]) => {
+            if (Array.isArray(value)) {
+                dadosRH1[key] = value[0]
+                dadosRH2[key] = value[1]                
+                }            
+            })
 
-                        //SEQUENCIA DE INSERÇÃO NO BANCO
-                    // CPF: employeeCPF
-                    // NOME: employeeName
-                    // FUNÇÃO EX: variantType
-                    // FORMAÇÃO ACADEMICA: academicTraining
-                    // DATA ADMISSÃO: admissionDate
-                    // DATA DEMISSÃO: resignationDate
-                    // DEDICAÇÃO(PARCIAL OU EXCLUSIVA): dedication
-                    // CUSTO ANUAL: annualCost
-                    // CUSTO POR HORA: hoursCost
-                    // HORAS P&D: p&dHours
-                    // CUSTO P&D: p&dCost
-                    // ----------------------------------
-                    // CUSTO TOTAL P&D: totalP&dCost
-                    // CUSTO TOTAL P&D HORAS: totalP&dHours
-                    // CUSTO TOTAL ANUAL: totalAnualCost
-                    // HORAS TOTAIS: totalHours
+        let custoPD1 = +(dadosRH1.pdCost.replace(/,/,'.'))
+        let custoPD2= +(dadosRH2.pdCost.replace(/,/,'.'))  
+        let totalPdCost = custoPD1 + custoPD2 //PERSISTIR NO BANCO
 
-            Object.entries(dadosRH).forEach(([key, value]) => {
-                    if (Array.isArray(value)) {
-                        objResult01[key] = value[0]
-                        objResult02[key] = value[1]                
-                        }            
-                    })
+        let custoHors1 = +(dadosRH1.hoursCost.replace(/,/,'.'))
+        let custoHors2 = +(dadosRH2.hoursCost.replace(/,/,'.')) 
+        let totalPdHours = custoHors1 + custoHors2 //PERSISTIR NO BANCO
+        
+        let custoAno1 = +(dadosRH1.annualCost.replace(/,/,'.'))
+        let custoAno2 = +(dadosRH2.annualCost.replace(/,/,'.')) 
+        let totalAnualCost = custoAno1 + custoAno2 //PERSISTIR NO BANCO
+        
+        let totalHoraPD1 = +(dadosRH1.pdHours.replace(/,/,'.'))
+        let totalHoraPD2 = +(dadosRH2.pdHours.replace(/,/,'.'))
+        let totalHours = totalHoraPD1 + totalHoraPD2 //PERSISTIR NO BANCO
+        
+        console.log(totalPdCost, totalPdHours, totalAnualCost, totalHours)
 
-                        let custo = +(objResult01.custo.replace(/,/,'.'))
-                        let custo1 = +(objResult02.custo.replace(/,/,'.'))
-                        console.log(objResult01.custo)
-                        console.log(objResult02.custo)
-                        if(isNaN(custo) || isNaN(custo1)){
-                            console.log("VERIFIQUE")
-                        }else{
-                            let soma = custo + custo1
-                            console.log(soma)
-                        }
+         //a inserção será feita apartir das chaves e valores, não do objeto inteiro       
     })
 
 // END ROUTS
