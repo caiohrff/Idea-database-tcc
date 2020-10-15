@@ -7,11 +7,11 @@ Ainda em processo, todo código será atualizado constantemente
 ---------------------------------------------------------------
 Install dependences
 
-#npm i node | 
-#npm i mysql | 
-#npm i body-parser | 
-#npm i express | 
-#npm i nodemon | 
+npm i node | 
+npm i mysql | 
+npm i body-parser | 
+npm i express | 
+npm i nodemon | 
 
 ---------------------------------------------------------------
 
