@@ -174,17 +174,15 @@ server.post("/resultadoformulario", (req, res) =>{
             dadosRH1.totalPdHours = totalPdHours
             dadosRH1.totalAnualCost = totalAnualCost
             dadosRH1.totalHours = totalHours
-            //-----------------------------------------------------------------
+
             dadosRH2.totalPdCost = totalPdCost
             dadosRH2.totalPdHours = totalPdHours
             dadosRH2.totalAnualCost = totalAnualCost
             dadosRH2.totalHours = totalHours
 
-            console.log(dadosRH2)
+            //console.log(dadosRH1)
+            //console.log(dadosRH2)
 
-        //a inserção será feita apartir das chaves e valores, não do objeto inteiro
-                 
-        //O PROBLEMA É A QUANTIDADE DE ARGUMENTOS PASSADOS NO INSERT
         mysqlConnection.query('INSERT INTO rh SET ?', dadosRH1, (err, rows) => {
             if(!err){
                 console.log("INSERIDO DADOS 01")
@@ -201,6 +199,231 @@ server.post("/resultadoformulario", (req, res) =>{
           })
     })
 
+
+    server.get('/contratados', (req, res) =>{
+        res.render('contratados.njk');
+
+    })
+
+    server.post('/contratadosResults', (req, res) =>{
+
+            const dadosContratados01 = {}
+            const dadosContratados02 = {}
+            
+            const dadosContratados = {
+            cnpjContracted: req.body.CNPJ,
+            nameContracted: req.body.nomeInstituicao,
+            descriptionContracted: req.body.descritivo,
+            InvoiceContracted: req.body.notaFiscal,
+            projectContracted: req.body.projeto,
+            dateIssuanceContracted: req.body.dataEmissao,
+            valueContracted: req.body.valor,
+            institutionContracted: req.body.instituto
+        }
+
+            //desestruturando o objeto principal em dois POIS AGORA NOSSA MANIPULAÇÃO É FEITA A PARTIR DOS OBJETOS: dadosContratados01 | dadosContratados02
+            Object.entries(dadosContratados).forEach(([key, value]) => {
+                if (Array.isArray(value)) {
+                    dadosContratados01[key] = value[0]
+                    dadosContratados02[key] = value[1]                
+                    }            
+                })
+
+            let valor01 = +(dadosContratados01.valueContracted.replace(/,/,'.'))
+            let valor02 = +(dadosContratados02.valueContracted.replace(/,/,'.'))  
+            let totalContracted = valor01 + valor02 //PERSISTIR NO BANCO
+
+            //inserindo dentro do objeto os valores somados
+            dadosContratados01.totalContracted = totalContracted
+            dadosContratados02.totalContracted = totalContracted
+            // console.log(dadosContratados)
+            // console.log(dadosContratados01)
+            // console.log(dadosContratados02)
+
+            mysqlConnection.query('INSERT INTO contracted SET ?', dadosContratados01, (err, rows) => {
+                if(!err){
+                    console.log("INSERIDO DADOS 01")
+                    mysqlConnection.query('INSERT INTO contracted SET ?', dadosContratados02, (err, rows) => {
+                        if(!err){
+                            console.log("INSERIDO DADOS 02")
+                        }else{
+                            console.log(err)
+                        }
+                      })
+                }else{
+                    console.log(err)
+                }
+              })
+    })
+
+    server.get('/transferidos', (req, res) =>{
+        res.render('transferidos.njk');
+
+    })
+
+    server.post("/transferidosResults", (req, res) =>{
+
+        const dadosTransferred01 = {}
+        const dadosTransferred02 = {}
+
+
+        const dadosTransferred = {
+            cnpjTransferred: req.body.CNPJ,
+            nameTransferred: req.body.nomeInstituicao,
+            descriptionTransferred: req.body.descritivo,
+            InvoiceTransferred: req.body.notaFiscal,
+            projectTransferred: req.body.projeto,
+            dateIssuanceTransferred: req.body.dataEmissao,
+            valueTransferred: req.body.valor,
+            institutionTransferred: req.body.empresa
+        }
+
+                Object.entries(dadosTransferred).forEach(([key, value]) =>{
+                    if(Array.isArray(value)){
+                        dadosTransferred01[key] = value[0]
+                        dadosTransferred02[key] = value[1]
+                    }
+                })
+
+                let valor01 = +(dadosTransferred01.valueTransferred.replace(/,/,'.'))
+                let valor02 = +(dadosTransferred02.valueTransferred.replace(/,/,'.'))  
+                let totalTransferred = valor01 + valor02 //PERSISTIR NO BANCO
+
+
+                dadosTransferred01.totalTransferred = totalTransferred
+                dadosTransferred02.totalTransferred = totalTransferred
+
+                // console.log(dadosTransferred)
+                // console.log(dadosTransferred01)
+                // console.log(dadosTransferred02)
+
+                mysqlConnection.query('INSERT INTO transferred SET ?', dadosTransferred01, (err, rows) => {
+                    if(!err){
+                        console.log("INSERIDO DADOS 01")
+                        mysqlConnection.query('INSERT INTO transferred SET ?', dadosTransferred02, (err, rows) => {
+                            if(!err){
+                                console.log("INSERIDO DADOS 02")
+                            }else{
+                                console.log(err)
+                            }
+                            })
+                    }else{
+                        console.log(err)
+                    }
+                    })
+    })
+
+    server.get("/expense", (req, res) =>{
+        res.render('outrasDespesas.njk');
+    })
+
+    server.post("/expenseResults", (req, res) =>{
+        const dadosExpense01 = {}
+        const dadosExpense02 = {}
+
+        const dadosExpense = {
+            cnpjExpenses: req.body.CNPJ,
+            nameExpenses: req.body.nomeInstituicao,
+            descriptionExpenses: req.body.descritivo,
+            invoiceExpenses: req.body.notaFiscal,
+            projectExpenses: req.body.projeto,
+            dataIssuanceExpenses: req.body.dataEmissao,
+            valueExpenses: req.body.valor,
+            optionExpenses: req.body.empresaDespesas
+        }
+
+        Object.entries(dadosExpense).forEach(([key, value]) =>{
+            if(Array.isArray(value)){
+                dadosExpense01[key] = value[0]
+                dadosExpense02[key] = value[1]
+            }
+        })
+
+        let valorExpense01 = +(dadosExpense01.valueExpenses.replace(/,/,'.'))
+        let valorExpense02 = +(dadosExpense02.valueExpenses.replace(/,/,'.'))  
+        let totalExpenses = valorExpense01 + valorExpense02 //PERSISTIR NO BANCO
+
+        dadosExpense01.totalExpenses = totalExpenses
+        dadosExpense02.totalExpenses = totalExpenses
+
+        console.log(dadosExpense)
+        console.log(dadosExpense01)
+        console.log(dadosExpense02)
+
+
+        mysqlConnection.query('INSERT INTO anotherexpenses SET ?', dadosExpense01, (err, rows) => {
+            if(!err){
+                console.log("INSERIDO DADOS 01")
+                mysqlConnection.query('INSERT INTO anotherexpenses SET ?', dadosExpense02, (err, rows) => {
+                    if(!err){
+                        console.log("INSERIDO DADOS 02")
+                    }else{
+                        console.log(err)
+                    }
+                    })
+            }else{
+                console.log(err)
+            }
+            })
+    })
+
+
+    server.get("/consumption", (req, res) =>{
+        res.render('consumo.njk');
+    })
+
+    server.post("/consumptionResults", (req, res)=>{
+        const dadosConsumption01 = {}
+        const dadosConsumption02 = {}
+
+        const dadosConsumption = {
+            cnpjConsumption: req.body.CNPJ,
+            nameConsumption: req.body.nomeInstituicao,
+            projectConsumption: req.body.projeto,
+            descriptionConsumption: req.body.descritivo,
+            invoiceConsumption: req.body.notaFiscal,
+            dataIssuanceConsumption: req.body.dataEmissao,
+            valueConsumption: req.body.valor,
+        }
+
+        Object.entries(dadosConsumption).forEach(([key, value]) =>{
+            if(Array.isArray){
+                dadosConsumption01[key] = value[0]
+                dadosConsumption02[key] = value[1]
+            }
+        })
+
+        console.log(dadosConsumption)
+
+        let valorConsumption01 = +(dadosConsumption01.valueConsumption.replace(/,/,'.'))
+        let valorConsumption02 = +(dadosConsumption02.valueConsumption.replace(/,/,'.'))  
+        let totalConsumption = valorConsumption01 + valorConsumption02 //PERSISTIR NO BANCO
+
+        dadosConsumption01.totalConsumption = totalConsumption
+        dadosConsumption02.totalConsumption = totalConsumption
+
+
+        console.log(dadosConsumption)
+        console.log(dadosConsumption01)
+        console.log(dadosConsumption02)
+
+
+        mysqlConnection.query('INSERT INTO consumption SET ?', dadosConsumption01, (err, rows) => {
+            if(!err){
+                console.log("INSERIDO DADOS 01")
+                mysqlConnection.query('INSERT INTO consumption SET ?', dadosConsumption02, (err, rows) => {
+                    if(!err){
+                        console.log("INSERIDO DADOS 02")
+                    }else{
+                        console.log(err)
+                    }
+                    })
+            }else{
+                console.log(err)
+            }
+            })
+    })
+    
 // END ROUTS
 
 
