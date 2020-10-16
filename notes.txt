@@ -1,0 +1,19 @@
+classificação dos dispendios
+
+recursos humanos = =RH!L215
+total serviços de terceiros = olhar a formula
+material de consumo = 'Material Consumo'!H31
+TOTAL DE DESPESAS = recursos humanos + total serviços de terceiros + material de consumo
+-----------------------------------------------------------------------------------------------------------
+valor total de P&D
+
+total de dispendios P&D = TOTAL DE DESPESAS
+base de exclusão = 60%
+exclusão do lucro real =  total de dispendios P&D * base de exclusão
+-----------------------------------------------------------------------------------------------------------
+Benefício fiscal
+
+IRPJ(15%) =  exclusão do lucro real * 0,15
+CSLL(9%) = exclusão do lucro real * 9%
+Adicional IRPJ(10%) =  
+TOTAL DO BENEFICIO = IRPJ(15%) =  (exclusão do lucro real * 0,15) + (exclusão do lucro real * 9%) + ()

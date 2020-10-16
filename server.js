@@ -53,23 +53,20 @@ server.get("/index", (req, res) =>{
     res.sendFile(__dirname + "/src/index.html")
 })
 
-//Resultado de ideias do usuário. - Inserir filtro futuramente
 server.get('/resultado', (req, res) =>{
 
     mysqlConnection.query('SELECT FormDetalhes FROM ideasform', (err, rows) => {
 
             const resultado = JSON.stringify(rows)
-            const json = JSON.parse(resultado)
-            console.log(json)    
+            const json = JSON.parse(resultado)   
 
-        if(!err){
-            const total = rows.length
-            return res.render('telaResultado', { result: json, total: total})
-           
-        }else{
-            console.log(err)
-        }
-      })
+            if(!err){
+                const total = rows.length
+                return res.render('telaResultado', { result: json, total: total})
+                    }else{
+                console.log(err)
+                            }
+    })
     
 })
 
@@ -82,15 +79,9 @@ server.post("/principal", (req, res) =>{
             if(rows.length > 0){
                         if(rows[0].EmpDepartament === 'Tecnologia' || rows[0].EmpDepartament === 'Gestor da inovacao'){
                             mysqlConnection.query('SELECT EmpName FROM employee WHERE EmpUser =  "' + user,  (err, rows, field) =>{
-                            console.log(rows)
-                            //     console.log(rows)
-                            // const usuario = JSON.stringify(rows)
-                            // const json = JSON.parse(resultado)
-                            // console.log(json)
                             return res.render('principalGestor')
                         })
-
-                        }else{
+                    }else{
                             return res.render('principalFunc')
                         }
             }else{
@@ -115,7 +106,6 @@ server.post("/resultadoformulario", (req, res) =>{
         mysqlConnection.query('INSERT INTO ideasform SET ?', DadosForm, (err, rows) => {
             if(!err){
                 console.log('INSERIDO')
-                //SWEETALERT
                 
             }else{
                 console.log(err)
@@ -156,19 +146,19 @@ server.post("/resultadoformulario", (req, res) =>{
 
             let custoPD1 = +(dadosRH1.pdCost.replace(/,/,'.'))
             let custoPD2= +(dadosRH2.pdCost.replace(/,/,'.'))  
-            let totalPdCost = custoPD1 + custoPD2 //PERSISTIR NO BANCO
+            let totalPdCost = custoPD1 + custoPD2
 
             let custoHors1 = +(dadosRH1.hoursCost.replace(/,/,'.'))
             let custoHors2 = +(dadosRH2.hoursCost.replace(/,/,'.')) 
-            let totalPdHours = custoHors1 + custoHors2 //PERSISTIR NO BANCO
+            let totalPdHours = custoHors1 + custoHors2
             
             let custoAno1 = +(dadosRH1.annualCost.replace(/,/,'.'))
             let custoAno2 = +(dadosRH2.annualCost.replace(/,/,'.')) 
-            let totalAnualCost = custoAno1 + custoAno2 //PERSISTIR NO BANCO
+            let totalAnualCost = custoAno1 + custoAno2
             
             let totalHoraPD1 = +(dadosRH1.pdHours.replace(/,/,'.'))
             let totalHoraPD2 = +(dadosRH2.pdHours.replace(/,/,'.'))
-            let totalHours = totalHoraPD1 + totalHoraPD2 //PERSISTIR NO BANCO
+            let totalHours = totalHoraPD1 + totalHoraPD2
 
             dadosRH1.totalPdCost = totalPdCost
             dadosRH1.totalPdHours = totalPdHours
@@ -179,9 +169,6 @@ server.post("/resultadoformulario", (req, res) =>{
             dadosRH2.totalPdHours = totalPdHours
             dadosRH2.totalAnualCost = totalAnualCost
             dadosRH2.totalHours = totalHours
-
-            //console.log(dadosRH1)
-            //console.log(dadosRH2)
 
         mysqlConnection.query('INSERT INTO rh SET ?', dadosRH1, (err, rows) => {
             if(!err){
@@ -198,7 +185,6 @@ server.post("/resultadoformulario", (req, res) =>{
             }
           })
     })
-
 
     server.get('/contratados', (req, res) =>{
         res.render('contratados.njk');
@@ -221,7 +207,6 @@ server.post("/resultadoformulario", (req, res) =>{
             institutionContracted: req.body.instituto
         }
 
-            //desestruturando o objeto principal em dois POIS AGORA NOSSA MANIPULAÇÃO É FEITA A PARTIR DOS OBJETOS: dadosContratados01 | dadosContratados02
             Object.entries(dadosContratados).forEach(([key, value]) => {
                 if (Array.isArray(value)) {
                     dadosContratados01[key] = value[0]
@@ -231,14 +216,11 @@ server.post("/resultadoformulario", (req, res) =>{
 
             let valor01 = +(dadosContratados01.valueContracted.replace(/,/,'.'))
             let valor02 = +(dadosContratados02.valueContracted.replace(/,/,'.'))  
-            let totalContracted = valor01 + valor02 //PERSISTIR NO BANCO
+            let totalContracted = valor01 + valor02
 
-            //inserindo dentro do objeto os valores somados
             dadosContratados01.totalContracted = totalContracted
             dadosContratados02.totalContracted = totalContracted
-            // console.log(dadosContratados)
-            // console.log(dadosContratados01)
-            // console.log(dadosContratados02)
+
 
             mysqlConnection.query('INSERT INTO contracted SET ?', dadosContratados01, (err, rows) => {
                 if(!err){
@@ -266,7 +248,6 @@ server.post("/resultadoformulario", (req, res) =>{
         const dadosTransferred01 = {}
         const dadosTransferred02 = {}
 
-
         const dadosTransferred = {
             cnpjTransferred: req.body.CNPJ,
             nameTransferred: req.body.nomeInstituicao,
@@ -287,15 +268,10 @@ server.post("/resultadoformulario", (req, res) =>{
 
                 let valor01 = +(dadosTransferred01.valueTransferred.replace(/,/,'.'))
                 let valor02 = +(dadosTransferred02.valueTransferred.replace(/,/,'.'))  
-                let totalTransferred = valor01 + valor02 //PERSISTIR NO BANCO
-
+                let totalTransferred = valor01 + valor02
 
                 dadosTransferred01.totalTransferred = totalTransferred
                 dadosTransferred02.totalTransferred = totalTransferred
-
-                // console.log(dadosTransferred)
-                // console.log(dadosTransferred01)
-                // console.log(dadosTransferred02)
 
                 mysqlConnection.query('INSERT INTO transferred SET ?', dadosTransferred01, (err, rows) => {
                     if(!err){
@@ -310,7 +286,7 @@ server.post("/resultadoformulario", (req, res) =>{
                     }else{
                         console.log(err)
                     }
-                    })
+                })
     })
 
     server.get("/expense", (req, res) =>{
@@ -341,32 +317,26 @@ server.post("/resultadoformulario", (req, res) =>{
 
         let valorExpense01 = +(dadosExpense01.valueExpenses.replace(/,/,'.'))
         let valorExpense02 = +(dadosExpense02.valueExpenses.replace(/,/,'.'))  
-        let totalExpenses = valorExpense01 + valorExpense02 //PERSISTIR NO BANCO
+        let totalExpenses = valorExpense01 + valorExpense02
 
         dadosExpense01.totalExpenses = totalExpenses
         dadosExpense02.totalExpenses = totalExpenses
-
-        console.log(dadosExpense)
-        console.log(dadosExpense01)
-        console.log(dadosExpense02)
-
 
         mysqlConnection.query('INSERT INTO anotherexpenses SET ?', dadosExpense01, (err, rows) => {
             if(!err){
                 console.log("INSERIDO DADOS 01")
                 mysqlConnection.query('INSERT INTO anotherexpenses SET ?', dadosExpense02, (err, rows) => {
-                    if(!err){
-                        console.log("INSERIDO DADOS 02")
-                    }else{
-                        console.log(err)
-                    }
+                        if(!err){
+                            console.log("INSERIDO DADOS 02")
+                        }else{
+                            console.log(err)
+                        }
                     })
-            }else{
+                }else{
                 console.log(err)
             }
-            })
+        })
     })
-
 
     server.get("/consumption", (req, res) =>{
         res.render('consumo.njk');
@@ -393,19 +363,12 @@ server.post("/resultadoformulario", (req, res) =>{
             }
         })
 
-        console.log(dadosConsumption)
-
         let valorConsumption01 = +(dadosConsumption01.valueConsumption.replace(/,/,'.'))
         let valorConsumption02 = +(dadosConsumption02.valueConsumption.replace(/,/,'.'))  
         let totalConsumption = valorConsumption01 + valorConsumption02 //PERSISTIR NO BANCO
 
         dadosConsumption01.totalConsumption = totalConsumption
         dadosConsumption02.totalConsumption = totalConsumption
-
-
-        console.log(dadosConsumption)
-        console.log(dadosConsumption01)
-        console.log(dadosConsumption02)
 
 
         mysqlConnection.query('INSERT INTO consumption SET ?', dadosConsumption01, (err, rows) => {
@@ -423,7 +386,30 @@ server.post("/resultadoformulario", (req, res) =>{
             }
             })
     })
+
+    server.get("/searchResults", (req, res) =>{
+        res.render("searchResults.njk") // tela para procurar a ideia
+
+
+        const search = req.body.SearcResults
+
+        if(search == ""){
+            return res.render("página de retorno de resultados", {total: 0})
+        }
+
+        mysqlConnection.query('',  (err, rows, field) =>{
+            if(!err){
+
+                }else{
+                    console.log(err)
+                }
+        })
+    })
     
+
+    server.post("allResultsSearch", (req, res) =>{
+        
+    })
 // END ROUTS
 
 
