@@ -289,7 +289,7 @@ server.post("/resultadoformulario", (req, res) =>{
                 })
     })
 
-    server.get("/expense", (req, res) =>{
+    server.get("/anotherexpense", (req, res) =>{
         res.render('outrasDespesas.njk');
     })
 
@@ -387,23 +387,13 @@ server.post("/resultadoformulario", (req, res) =>{
             })
     })
 
-    server.get("/searchResults", (req, res) =>{
-        res.render("searchResults.njk") // tela para procurar a ideia
-
-
-        const search = req.body.SearcResults
+    //MOSTRAR RESULTADOS DA LEI DO BEM
+    server.get("/search", (req, res) =>{
+        const search = req.body.search
 
         if(search == ""){
-            return res.render("página de retorno de resultados", {total: 0})
+            return res.send("search.njk", {total: 0})
         }
-
-        mysqlConnection.query('',  (err, rows, field) =>{
-            if(!err){
-
-                }else{
-                    console.log(err)
-                }
-        })
     })
     
 
