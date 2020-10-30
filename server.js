@@ -397,9 +397,39 @@ server.post("/resultadoformulario", (req, res) =>{
     })
     
 
-    server.post("allResultsSearch", (req, res) =>{
+    server.get("/procedure", (req, res) =>{
+        mysqlConnection.query("call getAllTotal", (err, rows)=> {
+            if (!err) {
+                const resultado = JSON.stringify(rows)
+                const results = JSON.parse(resultado)  
+                const resultadosProcedure = {
+                    totalPD: results[0][0],
+                    totalContratado: results[1][0],
+                    totalTransferido: results[2][0],
+                    TotalGastos:results[3][0],
+                    TotalConsumido: results[4][0]
+                }
+                // console.log(resultadosProcedure)
+                let a = resultadosProcedure.totalContratado.totalContratado
+                let b = resultadosProcedure.totalTransferido.totalTransferido
+                let c = resultadosProcedure.TotalGastos.totalGastos
+                let total = a + b + c
+                console.log(total)
+                // console.log(resultadosProcedure.TotalConsumido)
+                // console.log(resultadosProcedure.TotalGastos)
+                // console.log(results[0][0])
+                // console.log(results[1][0])
+                // console.log(results[2][0])
+                // console.log(results[3][0])
+                // console.log(results[4][0])
+            } else {
+                console.log(JSON.stringify(erro, null, 2))
+            }
         
+        });
+
     })
+
 // END ROUTS
 
 

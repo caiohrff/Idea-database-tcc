@@ -1,14 +1,36 @@
+    <!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/styles/rh.css">
+</head>
+<header>
+    <span id="pagina-form">
+        <div class="CabecaTop">
+               <img src="/img/finalBRANCO.png" alt="logo">
+               <h3>Knowledge SY</h3>
+        </div>
+    </span>
+</header>
+
+    <body>
+    <h1>Existem {{total}} ideias disponíveis</h1>
+
+    {% for ideias in result%}
+
+    <h2>{{ideias.FormDetalhes}}</h2></br>
     
+    {% endfor %}
+    </body>
+</html>
     <!-- EXPLICAÇÃO DO QUE ESTA ACONTECENDO // a variavel "result" vem do backend que está atribuida a variavel
     json que contem os dados do array de informações do banco JÁ CONVERTIDO EM JSON PURO. a variavel "ideias" está com o 
     objeto em si, e logo abaixo temos que acessar os mesmo a partir do indice dele, lembrando que a coleção e baseada
     no banco de dados. Tendo isso em mente, abaixo incluimos o laço de repetição acesso o objeto IDEIAS com 
     o indice que precisamos FORMDETALHES, tendo assim nossos dados necessarios para exibição dos dados do banco-->
 
-    <h1>Existem {{total}} ideias disponíveis</h1>
-
-    {% for ideias in result %}
-
-    <h2>{{ideias.FormDetalhes}}</h2></br>
-
-    {% endfor %}
