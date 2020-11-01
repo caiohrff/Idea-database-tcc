@@ -400,34 +400,83 @@ server.post("/resultadoformulario", (req, res) =>{
     server.get("/procedure", (req, res) =>{
         mysqlConnection.query("call getAllTotal", (err, rows)=> {
             if (!err) {
+                //CONVERTENDO PARA STRING
                 const resultado = JSON.stringify(rows)
-                const results = JSON.parse(resultado)  
+                const results = JSON.parse(resultado)
+                //RETIRANDO OS DADOS DE DENTRO DO ARRAY E CENTRALIZANDO OS OBJETOS INTERNO DENTRO DE UM UNICO OBJETO DE OBJETOS
+                //Vale ressaltar que essa declaração se usa pelo fato de ser objeto dentro de objeto
                 const resultadosProcedure = {
-                    totalPD: results[0][0],
-                    totalContratado: results[1][0],
-                    totalTransferido: results[2][0],
-                    TotalGastos:results[3][0],
-                    TotalConsumido: results[4][0]
+                    totalPD: results[0][0].totalPD,
+                    totalContratado: results[1][0].totalContratado,
+                    totalTransferido: results[2][0].totalTransferido,
+                    TotalGastos:results[3][0].totalGastos,
+                    TotalConsumido: results[4][0].totalConsumido
                 }
+                //EXIBINDO O VALOR
                 // console.log(resultadosProcedure)
-                let a = resultadosProcedure.totalContratado.totalContratado
-                let b = resultadosProcedure.totalTransferido.totalTransferido
-                let c = resultadosProcedure.TotalGastos.totalGastos
-                let total = a + b + c
-                console.log(total)
-                // console.log(resultadosProcedure.TotalConsumido)
-                // console.log(resultadosProcedure.TotalGastos)
-                // console.log(results[0][0])
-                // console.log(results[1][0])
-                // console.log(results[2][0])
-                // console.log(results[3][0])
-                // console.log(results[4][0])
+                let totalContratado = resultadosProcedure.totalContratado
+                let totalTrasnferido = resultadosProcedure.totalTransferido
+                let totalGastos = resultadosProcedure.TotalConsumido
+
+                function calculoFinal(){
+                    let rescursosHumanos = resultadosProcedure.totalPD
+                    let servicosTerceiros = totalContratado + totalTrasnferido + totalGastos
+                    let materialConsumo = resultadosProcedure.TotalConsumido
+                    let totalDespesas = rescursosHumanos + servicosTerceiros + materialConsumo
+                    console.log("--------------------------------")
+
+                    console.log(`total despesas: ${totalDespesas}`) //CHAMADA CONSOLE
+                    console.log("--------------------------------")
+                    
+                    let totalDispendiosPD = totalDespesas
+                    let baseExclusao = 0.60
+                    let exlusaoLucroReal = (totalDispendiosPD * baseExclusao).toFixed(2)
+                    console.log(`Exlusão Lucro Real: ${exlusaoLucroReal}`)//CHAMADA CONSOLE
+                    console.log("--------------------------------")
+
+                    let IRPJ = exlusaoLucroReal * 0.15
+                    let formatCSLL = exlusaoLucroReal * 0.09
+                    let CSLL = parseFloat(formatCSLL.toFixed(2))
+
+                    function calculoAdicionalIRPJ(){
+                        if(exlusaoLucroReal > 240000){
+                            let valorAdicionalIRPJ = exlusaoLucroReal - 240000
+                            return console.log(valorAdicionalIRPJ)
+                         }else{
+                            return exlusaoLucroReal
+                         }
+                    }
+
+                    let adicionalIRPJ = calculoAdicionalIRPJ()
+                    console.log(`Adicional IRPJ: ${adicionalIRPJ}`)//CHAMADA CONSOLE
+                    console.log("--------------------------------")
+
+                    let totalBeneficio = parseFloat(IRPJ + CSLL + adicionalIRPJ).toFixed(3)
+                    console.log("------------------------------------------------------------------")
+                    console.log(`IRPJ: ${IRPJ}, CSLL: ${CSLL}, adicional IRPJ: ${adicionalIRPJ}`)
+                    console.log("------------------------------------------------------------------")
+
+                    const resultadosCalculosFinal = {
+                        RecursosHumanos: rescursosHumanos,
+                        TotalServicosTerceiros: servicosTerceiros,
+                        MaterialConsumo: materialConsumo,
+                        TotalDespesas: totalDespesas,
+                        TotalDispendiosPD: totalDispendiosPD,
+                        BaseExclusao: baseExclusao,
+                        ExclusaoLucroReal: exlusaoLucroReal,
+                        IRPJ: IRPJ,
+                        CSLL: CSLL,
+                        AdicionalIRPJ: adicionalIRPJ,
+                        ValorBeneficio: totalBeneficio
+                    }
+                    return resultadosCalculosFinal //FAZER A FUNÇÃO RETORNAR ESSE OBJETO
+                }
+                console.log("Total do benefício: " + calculoFinal())
+
             } else {
                 console.log(JSON.stringify(erro, null, 2))
             }
-        
-        });
-
+        })
     })
 
 // END ROUTS
