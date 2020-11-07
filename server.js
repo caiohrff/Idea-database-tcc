@@ -49,8 +49,18 @@ server.get("/formulario", (req, res) =>{
 
 })
 
+
+server.get("/teste", (req, res) =>{
+    res.sendFile(__dirname + "/src/teste.html")
+
+})
+
 server.get("/index", (req, res) =>{
     res.sendFile(__dirname + "/src/index.html")
+})
+
+server.get("/nova", (req, res) =>{
+    res.sendFile(__dirname + "/src/testeNova.html")
 })
 
 server.get('/resultado', (req, res) =>{
@@ -79,10 +89,10 @@ server.post("/principal", (req, res) =>{
             if(rows.length > 0){
                         if(rows[0].EmpDepartament === 'Tecnologia' || rows[0].EmpDepartament === 'Gestor da inovacao'){
                             mysqlConnection.query('SELECT EmpName FROM employee WHERE EmpUser =  "' + user,  (err, rows, field) =>{
-                            return res.render('principalGestor')
+                            res.sendFile(__dirname + "/src/principalGestor.html")
                         })
                     }else{
-                            return res.render('principalFunc')
+                            res.sendFile(__dirname + "/src/principalFunc.html")
                         }
             }else{
                 res.sendFile(__dirname + "/src/index2.html")
@@ -114,7 +124,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get("/rh", (req, res) =>{
-        res.render('TelaRH.njk');
+        res.sendFile(__dirname + "/src/TelaRH.html")
     })
 
     server.post("/rhResults", (req, res) =>{
@@ -187,7 +197,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get('/contratados', (req, res) =>{
-        res.render('contratados.njk');
+        res.sendFile(__dirname + "/src/contratados.html")
 
     })
 
@@ -239,7 +249,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get('/transferidos', (req, res) =>{
-        res.render('transferidos.njk');
+        res.sendFile(__dirname + "/src/transferidos.html")
 
     })
 
@@ -289,8 +299,8 @@ server.post("/resultadoformulario", (req, res) =>{
                 })
     })
 
-    server.get("/anotherexpense", (req, res) =>{
-        res.render('outrasDespesas.njk');
+    server.get("/outrasDespesas", (req, res) =>{
+        res.sendFile(__dirname + "/src/outrasDespesas.html")
     })
 
     server.post("/expenseResults", (req, res) =>{
@@ -338,8 +348,8 @@ server.post("/resultadoformulario", (req, res) =>{
         })
     })
 
-    server.get("/consumption", (req, res) =>{
-        res.render('consumo.njk');
+    server.get("/consumo", (req, res) =>{
+        res.sendFile(__dirname + "/src/consumo.html")
     })
 
     server.post("/consumptionResults", (req, res)=>{
@@ -387,14 +397,15 @@ server.post("/resultadoformulario", (req, res) =>{
             })
     })
 
-    //MOSTRAR RESULTADOS DA LEI DO BEM
+    //AJUSTAR ESSA TELA
     server.get("/search", (req, res) =>{
         const search = req.body.search
 
         if(search == ""){
-            return res.send("search.njk", {total: 0})
+            // return res.sendFile(__dirname + "/src/consumo.html")
+            return res.send("search.html", {total: 0})
         }
-    })
+    })    //AJUSTAR ESSA TELA
     
 
     server.get("/procedure", (req, res) =>{
@@ -469,9 +480,9 @@ server.post("/resultadoformulario", (req, res) =>{
                         AdicionalIRPJ: adicionalIRPJ,
                         ValorBeneficio: totalBeneficio
                     }
-                    return resultadosCalculosFinal //FAZER A FUNÇÃO RETORNAR ESSE OBJETO
+                    return resultadosCalculosFinal
                 }
-                console.log("Total do benefício: " + calculoFinal())
+                console.log(`Total do benefício: ${calculoFinal().ValorBeneficio}`)
 
             } else {
                 console.log(JSON.stringify(erro, null, 2))

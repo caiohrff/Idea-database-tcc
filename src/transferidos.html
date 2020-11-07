@@ -19,15 +19,15 @@
 </header>
 
     <body>
-    <H1>DESPESAS</H1>
-            <form action="/expenseResults" method="POST">
+        <p><h3> - Transferidos</h3></p>
+            <form action="/transferidosResults" method="POST">
 
                 <label for="optInstituto">Empresa: </label>
 
-                <select name="empresaDespesas" id="empresaDespesas">
+                <select name="empresa" id="empresa">
                 <option value="">Selecione...</option>
-                <option value="EmpresasLTDA">Empresas LTDA</option>
-                <option value="EmpresaSA">Empresa S/A</option>
+                <option value="microempresa">Microempresa</option>
+                <option value="InstitutoPesquisa">Empresa de pequeno porte</option>
                 </select></br>
 
                 <!-- APENAS PARA VALIDAR OS ENVIOS DE INFORMAÇÕES, TRATAR ESSA PARTE DEPOIS-->
@@ -55,13 +55,16 @@
                 <h1>----------------------------------------------------------------------------</h1></br>
                 
 
-                                <label for="optInstituto">Empresa: </label>
+                <label for="optInstituto">Instituição: </label>
 
-                <select name="empresaDespesas" id="empresaDespesas">
+                <label for="optInstituto">Empresa: </label>
+
+                <select name="empresa" id="empresa">
                 <option value="">Selecione...</option>
-                <option value="EmpresasLTDA">Empresas LTDA</option>
-                <option value="EmpresaSA">Empresa S/A</option>
+                <option value="microempresa">Microempresa</option>
+                <option value="InstitutoPesquisa">Empresa de pequeno porte</option>
                 </select></br>
+
 
                 <!-- APENAS PARA VALIDAR OS ENVIOS DE INFORMAÇÕES, TRATAR ESSA PARTE DEPOIS-->
                 <label for="nomeInstituicao">Nome</label>
