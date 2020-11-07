@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Principal</title>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/initial.css">
+    <link rel="stylesheet" href="/styles/initial.css"
+    <link rel="stylesheet" href="/styles/searchIdea.css">
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/modal.css">
 </head>
 <header>
     <span id="principal">
@@ -25,33 +27,61 @@
     <span class="exit">
         <a href="/index"><img src="/img/exit.svg" class="exit"></a>
     </span>
-</header>
-<body>    
-
     <span class="exit2">
-        <a href="/index" style="color: #000000">Sair</a>
-    </span>
+            <a href="/index" style="color: #000000">Sair</a>
+        </span>
+</header>
 
-        <div id="botoesOpcao">
-            <button>
-                <a href="/rh">
-               <img src="/img/leiBem.svg" alt="">
-               <span class="FontePosicaoBotao" style="color: #000000">Modulo</span>
-                 </a>
-            </button>
 
-            <button>
-               <img src="/img/programmerUSER.svg" alt="">
-               <span class="FontePosicaoBotao">Perfil</span>
-            </button>
-            
-            <button>
-                <a href="/resultado">
-                <img src="/img/ListBrain.svg" alt="">
-                <span class="FontePosicaoBotao">Ideias</span>
-            </button><br>
+    <body>   
+            <div id="botoesOpcao">
+                    <button>
+                            <a href="/rh">
+                        <img src="/img/leiBem.svg" alt="">
+                        <span class="FontePosicaoBotao" style="color: #000000">Modulo</span>
+                            </a>
+                        </button>
+
+                                <button>
+                                    <img src="/img/programmerUSER.svg" alt="">
+                                    <span class="FontePosicaoBotao">Perfil</span>
+                                </button>
         </div>
 
+    <div id="page-home">
         
-</body>
+                <div class="content">
+                    <main>
+                        <a href="#"><span></span><strong>Pesquisar por ideias</strong></a>
+                    </main>
+                </div>
+            
+            </div>
+
+            <div id="modal" class="hide">
+            <div class="content">
+                <div class="header">
+                    <h1>Pesquisar ideias</h1>
+                    <a href="#">Fechar</a>
+                </div>
+                
+                <form action="/search">
+                    <label for="search">Assunto da ideia</label>
+                    <div class="search field">
+                        <input type="text" name="search" placeholder="Pesquisa por ideas...">
+                        <button>
+                            <img src="/img/search.svg" alt="Buscar">
+                        </button>
+                    </div>
+                </form>
+            </div>
+</div>
+    
+    <script src="scripts/index.js"></script>
+    
+            
+             
+    </body>
+    
+
 </html>

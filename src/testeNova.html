@@ -6,15 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     
-    <title>Ecoleta</title>
+    <title>Ideias</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
   
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/searchIdea.css">
     <link rel="stylesheet" href="/styles/home.css">
     <link rel="stylesheet" href="/styles/modal.css">
-    
-
     <link rel="stylesheet" href="/style/responsive.css">
 </head>
 <body>
@@ -23,21 +21,21 @@
         
         <div class="content">
             <main>
-                <a href="#"><span></span><strong>Pesquisar pontos de coleta</strong></a>
+                <a href="#"><span></span><strong>Pesquisar por ideias</strong></a>
             </main>
         </div>
     
     </div>
-    
-    <!--ESSE TRECHO DE CÓDIGO É DEVIDO AO NUNJUCKS, ESSA PARTE ESTÁ SENDO REFERENCIADA NA PARTIALS/MODAL-->
+
     <div id="modal" class="hide">
     <div class="content">
         <div class="header">
-            <h1>Pontos de coleta</h1>
+            <h1>Pesquisar ideias</h1>
             <a href="#">Fechar</a>
         </div>
+        
         <form action="/search">
-            <label for="search">Cidade</label>
+            <label for="search">Assunto da ideia</label>
             <div class="search field">
                 <input type="text" name="search" placeholder="Pesquisa por cidade">
                 <button>
@@ -47,9 +45,6 @@
         </form>
     </div>
 </div>
-
-    
-
     
     <script src="scripts/index.js"></script>
     

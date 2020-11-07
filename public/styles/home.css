@@ -1,8 +1,7 @@
 #page-home{
-    height: 100vh;
-    background: url('../assets/home-background.svg') no-repeat; /* definindo fundo com foto de imagem e o NO-REPEAT para não repetir*/
-    background-position: 35vw bottom;
-
+    height: 25vh;
+    background-position: 10vw bottom;
+    
 }
 
 #page-home .content{
@@ -18,28 +17,6 @@
     
 }
 
-#page-home header{
-    margin-top: 48px;
-    display: flex;
-    align-items: center; /*Alinhando os elementos do HEADER no centro*/
-    justify-content: space-between; /*justificando espaço, deixando um espaço entre eles(between)*/
-
-}
-
-#page-home header a{
-    display: flex;
-    color:var(--title-color);
-    font-weight: 700;
-}
-
-#page-home header a span{
-    margin-right: 16px;
-    display: flex;
-    background-image: url(../assets/log-in.svg);
-    width: 20px;
-    height: 20px;
-}
-
 #page-home main{
     max-width: 560px;
 
@@ -51,15 +28,6 @@
 
 }
 
-#page-home main h1{
-    font-size: 54px;
-}
-
-#page-home main p{
-    font-size: 24px;
-    line-height: 38px;
-    margin-top: 24px;
-}
 
 #page-home main a{
     width: 100%;
@@ -73,21 +41,23 @@
     margin-top: 40px;
 
 
-    background-color: var(--primary-color);
+    background-color: black;
     
     transition: 400ms;
+
+    text-decoration: none;
 
 }
 
 #page-home main a:hover{
-        background-color: #2fb86e;
+        background-color: #1d1c1c;
 
 }
 
 #page-home main a span{
     width: 72px;
     height: 72px;
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: rgba(243, 243, 243, 0.08);
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     display: flex;
@@ -98,7 +68,7 @@
 
 #page-home main a span::after{
     content: "";
-    background-image: url(../assets/search.svg);
+    background-image: url(../img/search.svg);
     width: 20px;
     height: 20px;
 }
