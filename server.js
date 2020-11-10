@@ -21,7 +21,7 @@ const mysqlConnection = mysql.createConnection({
     database: 'ideadb',
     multipleStatements: true
 })
-
+    
 mysqlConnection.connect((err) =>{
     if(!err){
         console.log('sucessfied connection')
@@ -35,32 +35,36 @@ mysqlConnection.connect((err) =>{
 
 server.use(express.static("public"))
 server.use(express.urlencoded({extended: true}))
-server.set('view engine', '.njk')
+server.set('view engine', '.html')
 
 //ROUTS
 
 server.get('/', (req, res) => {
-    res.sendFile(__dirname + "/src/index.html")
+    res.sendFile(__dirname + "/src/views/index.html")
 })
 
 
+server.get('/pao', (req, res) => {
+    res.sendFile(__dirname + "/src/views/teste.njk")
+})
+
 server.get("/formulario", (req, res) =>{
-    res.sendFile(__dirname + "/src/formIdea.html")
+    res.sendFile(__dirname + "/src/views/formIdea.html")
 
 })
 
 
 server.get("/teste", (req, res) =>{
-    res.sendFile(__dirname + "/src/teste.html")
+    res.sendFile(__dirname + "/src/views/teste.html")
 
 })
 
 server.get("/index", (req, res) =>{
-    res.sendFile(__dirname + "/src/index.html")
+    res.sendFile(__dirname + "/src/views/index.html")
 })
 
 server.get("/nova", (req, res) =>{
-    res.sendFile(__dirname + "/src/testeNova.html")
+    res.sendFile(__dirname + "/src/views/testeNova.html")
 })
 
 server.get('/resultado', (req, res) =>{
@@ -89,13 +93,13 @@ server.post("/principal", (req, res) =>{
             if(rows.length > 0){
                         if(rows[0].EmpDepartament === 'Tecnologia' || rows[0].EmpDepartament === 'Gestor da inovacao'){
                             mysqlConnection.query('SELECT EmpName FROM employee WHERE EmpUser =  "' + user,  (err, rows, field) =>{
-                            res.sendFile(__dirname + "/src/principalGestor.html")
+                            res.sendFile(__dirname + "/src/views/principalGestor.html")
                         })
                     }else{
-                            res.sendFile(__dirname + "/src/principalFunc.html")
+                            res.sendFile(__dirname + "/src/views/principalFunc.html")
                         }
             }else{
-                res.sendFile(__dirname + "/src/index2.html")
+                res.sendFile(__dirname + "/src/views/index2.html")
             }
         }else{
             console.log(err)
@@ -124,7 +128,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get("/rh", (req, res) =>{
-        res.sendFile(__dirname + "/src/TelaRH.html")
+        res.sendFile(__dirname + "/src/views/TelaRH.html")
     })
 
     server.post("/rhResults", (req, res) =>{
@@ -197,7 +201,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get('/contratados', (req, res) =>{
-        res.sendFile(__dirname + "/src/contratados.html")
+        res.sendFile(__dirname + "/src/views/contratados.html")
 
     })
 
@@ -249,7 +253,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get('/transferidos', (req, res) =>{
-        res.sendFile(__dirname + "/src/transferidos.html")
+        res.sendFile(__dirname + "/src/views/transferidos.html")
 
     })
 
@@ -300,7 +304,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get("/outrasDespesas", (req, res) =>{
-        res.sendFile(__dirname + "/src/outrasDespesas.html")
+        res.sendFile(__dirname + "/src/views/outrasDespesas.html")
     })
 
     server.post("/expenseResults", (req, res) =>{
@@ -349,7 +353,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get("/consumo", (req, res) =>{
-        res.sendFile(__dirname + "/src/consumo.html")
+        res.sendFile(__dirname + "/src/views/consumo.html")
     })
 
     server.post("/consumptionResults", (req, res)=>{
@@ -397,15 +401,6 @@ server.post("/resultadoformulario", (req, res) =>{
             })
     })
 
-    //AJUSTAR ESSA TELA
-    server.get("/search", (req, res) =>{
-        const search = req.body.search
-
-        if(search == ""){
-            // return res.sendFile(__dirname + "/src/consumo.html")
-            return res.send("search.html", {total: 0})
-        }
-    })    //AJUSTAR ESSA TELA
     
 
     server.get("/procedure", (req, res) =>{
@@ -490,6 +485,42 @@ server.post("/resultadoformulario", (req, res) =>{
         })
     })
 
+    server.get("/search", (req, res) =>{
+        const search = req.query.search
+        console.log(search)
+        if(search == ""){
+            return res.sendFile(__dirname + "/src/views/search.html",{total: 0})
+         } 
+                     
+    mysqlConnection.query(`SELECT * FROM ideasform WHERE FormAssunto like '%${search}%'`, (err, rows) => {
+
+        const resultado = JSON.stringify(rows)
+        const ideasArray = JSON.parse(resultado)  
+
+        const ideiasCollection = {
+            IDform: ideasArray[0].IDform,
+            FormEmployeeRA: ideasArray[0].FormEmployeeRA,
+            FormEmployeeNome: ideasArray[0].FormEmployeeNome,
+            FormEmployeeSetor: ideasArray[0].FormEmployeeSetor,
+            FormEmployeeCargo: ideasArray[0].FormEmployeeCargo,
+            FormDetalhes: ideasArray[0].FormDetalhes,
+            FormAssunto: ideasArray[0].FormAssunto,
+            availableIdea: ideasArray[0].availableIdea,
+            benefitValue: ideasArray[0].benefitValue
+        } 
+
+        console.log(ideiasCollection)
+        const total = rows.length
+        if(!err){
+            res.render('search.html', {ideas: ideiasCollection, total: 0})
+            // res.render('search.html.html')
+            // return res.sendFile(__dirname + "/src/views/search.html", {ideas: ideiasCollection, total: 0})
+                }else{
+                         console.log(err)
+                    }
+})
+           
+    })
 // END ROUTS
 
 
