@@ -33,22 +33,22 @@
                 {%if total > 0%}
                     <h4>
                         <strong>{{total}} ideas</strong>
-                            encontradas
+                             encontradas
                     </h4>
 
                     <div class="cards">
-                        {% for ideaNewArray in ideas %}
+                        {% for ideas in idea %}
                             <div class="card">
-                                <h1>{{ideaNewArray.FormAssunto}}</h1>
-                                <h3>{{ideaNewArray.FormDetalhes}}</h3>
+                                <h1>{{ideas.FormAssunto}}</h1>
+                                <h3>{{ideas.FormDetalhes}}</h3>
                             <p>
-                                {{ideaNewArray.FormEmployeeNome}}, {{ideaNewArray.FormEmployeeRA}}
+                                {{ideas.FormEmployeeNome}}, {{ideas.FormEmployeeRA}}
                             <br>
-        </div>
+                    </div>
                         {% endfor %}
-    </div>
+                </div>
                 {%else%}
-                    <h4><strong>Nenhum </strong>local encontrado</h4>
+                    <h4><strong>Nenhuma </strong>ideia encontrado</h4>
                 {% endif %}
 
             </main>

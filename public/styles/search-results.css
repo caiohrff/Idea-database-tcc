@@ -76,14 +76,14 @@ main .card h3{
     font-size: 24px;
     line-height: 34px;
 
-    color:#34cb79
+    color:black
 }
 
 main .card p{
     font-size: 16px;
     line-height: 26px;
 
-    color: #6c6c80
+    color: black;
 }
 
 /*fazer o plano de fundo atrás da imagem principal*/

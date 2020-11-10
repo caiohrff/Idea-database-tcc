@@ -7,7 +7,7 @@ const { json } = require('body-parser')
 
 server.use(bodyParser.json())
 
-nunjucks.configure('src/views', {
+nunjucks.configure('src', {
     autoescape: true,
     express: server,
     watch: true,
@@ -40,31 +40,31 @@ server.set('view engine', '.html')
 //ROUTS
 
 server.get('/', (req, res) => {
-    res.sendFile(__dirname + "/src/views/index.html")
+    res.sendFile(__dirname + "/src/index.html")
 })
 
 
 server.get('/pao', (req, res) => {
-    res.sendFile(__dirname + "/src/views/teste.njk")
+    res.sendFile(__dirname + "/src/teste.njk")
 })
 
 server.get("/formulario", (req, res) =>{
-    res.sendFile(__dirname + "/src/views/formIdea.html")
+    res.sendFile(__dirname + "/src/formIdea.html")
 
 })
 
 
 server.get("/teste", (req, res) =>{
-    res.sendFile(__dirname + "/src/views/teste.html")
+    res.sendFile(__dirname + "/src/teste.html")
 
 })
 
 server.get("/index", (req, res) =>{
-    res.sendFile(__dirname + "/src/views/index.html")
+    res.sendFile(__dirname + "/src/index.html")
 })
 
 server.get("/nova", (req, res) =>{
-    res.sendFile(__dirname + "/src/views/testeNova.html")
+    res.sendFile(__dirname + "/src/testeNova.html")
 })
 
 server.get('/resultado', (req, res) =>{
@@ -93,13 +93,13 @@ server.post("/principal", (req, res) =>{
             if(rows.length > 0){
                         if(rows[0].EmpDepartament === 'Tecnologia' || rows[0].EmpDepartament === 'Gestor da inovacao'){
                             mysqlConnection.query('SELECT EmpName FROM employee WHERE EmpUser =  "' + user,  (err, rows, field) =>{
-                            res.sendFile(__dirname + "/src/views/principalGestor.html")
+                            res.sendFile(__dirname + "/src/principalGestor.html")
                         })
                     }else{
-                            res.sendFile(__dirname + "/src/views/principalFunc.html")
+                            res.sendFile(__dirname + "/src/principalFunc.html")
                         }
             }else{
-                res.sendFile(__dirname + "/src/views/index2.html")
+                res.sendFile(__dirname + "/src/index2.html")
             }
         }else{
             console.log(err)
@@ -128,7 +128,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get("/rh", (req, res) =>{
-        res.sendFile(__dirname + "/src/views/TelaRH.html")
+        res.sendFile(__dirname + "/src/TelaRH.html")
     })
 
     server.post("/rhResults", (req, res) =>{
@@ -201,7 +201,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get('/contratados', (req, res) =>{
-        res.sendFile(__dirname + "/src/views/contratados.html")
+        res.sendFile(__dirname + "/src/contratados.html")
 
     })
 
@@ -253,7 +253,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get('/transferidos', (req, res) =>{
-        res.sendFile(__dirname + "/src/views/transferidos.html")
+        res.sendFile(__dirname + "/src/transferidos.html")
 
     })
 
@@ -304,7 +304,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get("/outrasDespesas", (req, res) =>{
-        res.sendFile(__dirname + "/src/views/outrasDespesas.html")
+        res.sendFile(__dirname + "/src/outrasDespesas.html")
     })
 
     server.post("/expenseResults", (req, res) =>{
@@ -353,7 +353,7 @@ server.post("/resultadoformulario", (req, res) =>{
     })
 
     server.get("/consumo", (req, res) =>{
-        res.sendFile(__dirname + "/src/views/consumo.html")
+        res.sendFile(__dirname + "/src/consumo.html")
     })
 
     server.post("/consumptionResults", (req, res)=>{
@@ -489,7 +489,7 @@ server.post("/resultadoformulario", (req, res) =>{
         const search = req.query.search
         console.log(search)
         if(search == ""){
-            return res.sendFile(__dirname + "/src/views/search.html",{total: 0})
+            return res.sendFile(__dirname + "/src/search.html",{total: 0})
          } 
                      
     mysqlConnection.query(`SELECT * FROM ideasform WHERE FormAssunto like '%${search}%'`, (err, rows) => {
@@ -512,9 +512,9 @@ server.post("/resultadoformulario", (req, res) =>{
         console.log(ideiasCollection)
         const total = rows.length
         if(!err){
-            res.render('search.html', {ideas: ideiasCollection, total: 0})
-            // res.render('search.html.html')
-            // return res.sendFile(__dirname + "/src/views/search.html", {ideas: ideiasCollection, total: 0})
+            console.log(ideiasCollection)
+            console.log(total)
+            return res.render('search', {idea: ideiasCollection, total: total})
                 }else{
                          console.log(err)
                     }
