@@ -12,46 +12,41 @@
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/search-results.css">
 </head>
-<header>
-    <span id="principal">
-        <div class="headerTop">
-               <img src="/img/LogoBranco.svg" alt="logo">
-               <h3>Knowledge SY</h3>
-        </div>
-    </span>
-
-    <span class="exit">
-        <a href="/index"><img src="/img/exit.svg" class="exit"></a>
-    </span>
-    <span class="exit2">
-            <a href="/index" style="color: #000000">Sair</a>
-        </span>
 <body>
+            <header>
+                <span id="principal">
+                    <div class="headerTop">
+                        <img src="/img/LogoBranco.svg" alt="logo">
+                        <h3>Knowledge SY</h3>
+                    </div>
+                </span>
 
-    <div id="page-search-results">
+                <span class="exit">
+                    <a href="/index"><img src="/img/exit.svg" class="exit"></a>
+                </span>
+                <span class="exit2">
+                        <a href="/index" style="color: #000000">Sair</a>
+                    </span>
+            </header>
+
+
+        <div id="page-search-results">
             <main>
                 {%if total > 0%}
-                    <h4>
-                        <strong>{{total}} ideas</strong>
-                             encontradas
-                    </h4>
-
-                    <div class="cards">
-                        {% for ideas in idea %}
-                            <div class="card">
-                                <h1>{{ideas.FormAssunto}}</h1>
-                                <h3>{{ideas.FormDetalhes}}</h3>
-                            <p>
-                                {{ideas.FormEmployeeNome}}, {{ideas.FormEmployeeRA}}
-                            <br>
-                    </div>
-                        {% endfor %}
-                </div>
-                {%else%}
-                    <h4><strong>Nenhuma </strong>ideia encontrado</h4>
+                    <h4> <strong>{{total}} ideas encontradas</h4></strong>
+                                <div class="cards">
+                                    {% for ideas in idea %}
+                                        <div class="card">
+                                            <h1>{{ideas.FormAssunto}}</h1>
+                                            <h3>{{ideas.FormDetalhes}}</h3>
+                                        <p>
+                                            <h5>{{ideas.FormEmployeeNome}}, {{ideas.FormEmployeeRA}}</h5><br>
+                                    {% endfor %}
+                                </div>
+                            {%else%}
+                                <h4><strong>Nenhuma </strong> ideia encontrado</h4>
                 {% endif %}
-
             </main>
-    </div>
+        </div>
 </body>
 </html>

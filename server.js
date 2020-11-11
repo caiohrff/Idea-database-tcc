@@ -120,6 +120,7 @@ server.post("/resultadoformulario", (req, res) =>{
         mysqlConnection.query('INSERT INTO ideasform SET ?', DadosForm, (err, rows) => {
             if(!err){
                 console.log('INSERIDO')
+                return res.render("formIdea.html", {saved: true})
                 
             }else{
                 console.log(err)
@@ -489,32 +490,18 @@ server.post("/resultadoformulario", (req, res) =>{
         const search = req.query.search
         console.log(search)
         if(search == ""){
-            return res.sendFile(__dirname + "/src/search.html",{total: 0})
+            return res.render('search', {total: 0})
          } 
                      
     mysqlConnection.query(`SELECT * FROM ideasform WHERE FormAssunto like '%${search}%'`, (err, rows) => {
 
         const resultado = JSON.stringify(rows)
         const ideasArray = JSON.parse(resultado)  
+        console.log(ideasArray)
 
-        const ideiasCollection = {
-            IDform: ideasArray[0].IDform,
-            FormEmployeeRA: ideasArray[0].FormEmployeeRA,
-            FormEmployeeNome: ideasArray[0].FormEmployeeNome,
-            FormEmployeeSetor: ideasArray[0].FormEmployeeSetor,
-            FormEmployeeCargo: ideasArray[0].FormEmployeeCargo,
-            FormDetalhes: ideasArray[0].FormDetalhes,
-            FormAssunto: ideasArray[0].FormAssunto,
-            availableIdea: ideasArray[0].availableIdea,
-            benefitValue: ideasArray[0].benefitValue
-        } 
-
-        console.log(ideiasCollection)
         const total = rows.length
         if(!err){
-            console.log(ideiasCollection)
-            console.log(total)
-            return res.render('search', {idea: ideiasCollection, total: total})
+            return res.render('search', {idea: ideasArray, total: total})
                 }else{
                          console.log(err)
                     }
