@@ -63,8 +63,12 @@ server.get("/index", (req, res) =>{
     res.sendFile(__dirname + "/src/index.html")
 })
 
-server.get("/nova", (req, res) =>{
-    res.sendFile(__dirname + "/src/testeNova.html")
+server.get("/back", (req, res) =>{
+    res.sendFile(__dirname + "/src/principalGestor.html")
+})
+
+server.get("/back2", (req, res) =>{
+    res.sendFile(__dirname + "/src/principalFunc.html")
 })
 
 server.get('/resultado', (req, res) =>{
@@ -405,6 +409,7 @@ server.post("/resultadoformulario", (req, res) =>{
     
 
     server.get("/procedure", (req, res) =>{
+
         mysqlConnection.query("call getAllTotal", (err, rows)=> {
             if (!err) {
                 //CONVERTENDO PARA STRING
@@ -484,6 +489,7 @@ server.post("/resultadoformulario", (req, res) =>{
                 console.log(JSON.stringify(erro, null, 2))
             }
         })
+
     })
 
     server.get("/search", (req, res) =>{
@@ -498,7 +504,6 @@ server.post("/resultadoformulario", (req, res) =>{
         const resultado = JSON.stringify(rows)
         const ideasArray = JSON.parse(resultado)  
         console.log(ideasArray)
-
         const total = rows.length
         if(!err){
             return res.render('search', {idea: ideasArray, total: total})

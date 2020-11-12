@@ -1,3 +1,11 @@
+#page-search-results{
+    width: 90%;
+    max-width: 1100px;
+ 
+    /*EM CIMA E EMBAIXO FIQUE 0 MAS NAS LATERAIS SEJA PREENCHIDO AUTOMATICAMENTE*/
+    margin: 0 auto;
+}
+
 
 #page-search-results{
     width: 90%;
@@ -6,6 +14,7 @@
     /*EM CIMA E EMBAIXO FIQUE 0 MAS NAS LATERAIS SEJA PREENCHIDO AUTOMATICAMENTE*/
     margin: 0 auto;
 }
+
 
 main{
     margin: 48px;
@@ -22,10 +31,18 @@ main .cards{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 
-    gap: 24px;
-  
-    font-style: italic;
+    gap: 10px 20px;
+}
 
+
+main .cards img{
+    width: 100%;
+    height: 150px;
+    
+    object-fit: cover; /*para preencher todo o esaço com a imagem para ela ficar "resposiva"*/
+
+    border-radius: 8px 8px 0 0;
+    
 }
 
 main .cards h1{
@@ -37,12 +54,13 @@ main .cards h1{
     color: black;
 }
 
+
 main .card h3{
     margin: 24px 0;
 
 
-    font-family: Roboto;
-    font-weight: bold;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: lighter;
     font-size: 24px;
     line-height: 34px;
 
@@ -65,11 +83,11 @@ body{
 body::after{
     content: "";
     position: absolute;
-    background: #eaeaea;
+    background: #efebeb;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
-    height: 16rem;
+    height: 19rem;
     z-index: -1;  /*z-index é o eixo de profundidade, se aplicar -1 ele fica atrás da camada*/
 }

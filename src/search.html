@@ -22,10 +22,10 @@
                 </span>
 
                 <span class="exit">
-                    <a href="/index"><img src="/img/exit.svg" class="exit"></a>
+                    <a href="/back"><img src="/img/undo.svg" class="exit"></a>
                 </span>
                 <span class="exit2">
-                        <a href="/index" style="color: #000000">Sair</a>
+                        <a href="/back" style="color: #000000">Voltar</a>
                     </span>
             </header>
 
@@ -34,19 +34,24 @@
             <main>
                 {%if total > 0%}
                     <h4> <strong>{{total}} ideas encontradas</h4></strong>
-                                <div class="cards">
-                                    {% for ideas in idea %}
-                                        <div class="card">
-                                            <h1>{{ideas.FormAssunto}}</h1>
-                                            <h3>{{ideas.FormDetalhes}}</h3>
-                                        <p>
-                                            <h5>{{ideas.FormEmployeeNome}}, {{ideas.FormEmployeeRA}}</h5><br>
-                                    {% endfor %}
-                                </div>
-                            {%else%}
-                                <h4><strong>Nenhuma </strong> ideia encontrado</h4>
+                                    <div class="cards">
+                                            {% for ideas in idea %}
+                                                <div class="card">
+                                                    <img src="/img/ideaDefault2.jpg" alt="">
+                                                    <h1>{{ideas.FormAssunto}}</h1>
+                                                    <h3>{{ideas.FormDetalhes}}</h3>
+                                                <p>
+                                                    <h5>Benefício de isenção fiscal: {{ideas.FormEmployeeNome}}</h5><br>
+                                                        <h5>{{ideas.FormEmployeeNome}}, {{ideas.FormEmployeeRA}}</h5><br>
+                                                </p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                {%else%}
+                <h4><strong>Nenhuma </strong> ideia encontrado</h4>
                 {% endif %}
             </main>
         </div>
+        <script src="scripts/randomPicture.js"></script>   
 </body>
 </html>
