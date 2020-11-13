@@ -32,6 +32,8 @@ main .cards{
     grid-template-columns: 1fr 1fr 1fr;
 
     gap: 10px 20px;
+
+    
 }
 
 
@@ -67,11 +69,21 @@ main .card h3{
     color:black
 }
 
+
+main .card{
+ background-color: #8080800f;
+
+ border-radius: 5px;
+ 
+ padding-left: 10px;
+}
+
 main .card p{
     font-size: 16px;
     line-height: 26px;
 
     color: black;
+
 }
 
 /*fazer o plano de fundo atrás da imagem principal*/

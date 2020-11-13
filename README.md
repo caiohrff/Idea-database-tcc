@@ -1,9 +1,4 @@
 # Base de dados de ideias com auxilio da "lei do bem"
-
-
-Ainda em processo, todo código será atualizado constantemente
-
-
 ---------------------------------------------------------------
 Install dependences
 
