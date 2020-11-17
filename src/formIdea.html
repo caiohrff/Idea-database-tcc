@@ -24,7 +24,6 @@
                         <a href="/back2" style="color: #000000">Voltar</a>
                     </span>
     </header>
-
     <body>
         <div id="imgPrincipalBody">
             <img src="/img/IconBodyForm.png" alt="" class="imgFormPrincipal">
@@ -65,14 +64,23 @@
                                     <input class="input-detalhes" type="text" name="detalhes" required="required">
                                 </div>
                         </div>
-                            <button type="submit">Enviar</button>
+                            <button onclick="returnPage()" type="submit">Enviar</button>
             </form>
-
-        </div>
+            </div>
             <div class="circuloBranco"></div>
 
                 <div id="circuloAzul">
                     <img src="/img/icoForm.svg" alt="" class="icoForm">
                 </div>
+
+                <script>
+                    function returnPage() {
+                        setTimeout(() => {
+                            alert("Ideia inserida!");
+                            window.location = "/back2"
+                    }, 1000)
+                                            }
+                    </script>
+                
     </body>
 </html>

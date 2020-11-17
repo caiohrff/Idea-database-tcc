@@ -20,7 +20,7 @@ const mysqlConnection = mysql.createConnection({
     database: 'ideadb',
     multipleStatements: true
 })
-    
+
 mysqlConnection.connect((err) =>{
     if(!err){
         console.log('sucessfied connection')
@@ -80,10 +80,10 @@ server.post("/principal", (req, res) =>{
             if(rows.length > 0){
                         if(rows[0].EmpDepartament === 'Tecnologia' || rows[0].EmpDepartament === 'Gestor da inovacao'){
                             mysqlConnection.query('SELECT EmpName FROM employee WHERE EmpUser =  "' + user,  (err, rows, field) =>{
-                            res.sendFile(__dirname + "/src/principalGestor.html")
+                            res.sendFile(__dirname + "/src/principalGestor.html", {userCurrent: user})
                         })
                     }else{
-                            res.sendFile(__dirname + "/src/principalFunc.html")
+                            res.sendFile(__dirname + "/src/principalFunc.html", {userCurrent: user})
                         }
             }else{
                 res.sendFile(__dirname + "/src/index2.html")
@@ -107,7 +107,7 @@ server.post("/resultadoformulario", (req, res) =>{
         mysqlConnection.query('INSERT INTO ideasform SET ?', DadosForm, (err, rows) => {
             if(!err){
                 console.log('INSERIDO')
-                return res.render("formIdea.html", {saved: true})
+                // return res.render("formIdea.html", {saved: true})
                 
             }else{
                 console.log(err)
