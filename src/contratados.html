@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário</title>
+    <title>Contratados</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/styles/rh.css">
+        <link rel="stylesheet" href="/styles/contratados.css">
+
 </head>
 <header>
     <span id="pagina-form">
@@ -19,9 +20,11 @@
 </header>
 
     <body>
-    <p><h3> - Contratos</h3></p>
+    <p><h3>Contratos</h3></p>
             <form action="/contratadosResults" method="POST">
+                <div class="divFormRH">
 
+                <img src="/img/ideaFORM3.jpg" alt="" class="imgFormulario1"></br>
                 <label for="optInstituto">Instituição: </label>
 
                 <select name="instituto" id="instituto">
@@ -32,30 +35,45 @@
                 </select></br>
 
                 <!-- APENAS PARA VALIDAR OS ENVIOS DE INFORMAÇÕES, TRATAR ESSA PARTE DEPOIS-->
+                <div class="nomeInstituicao">
                 <label for="nomeInstituicao">Nome</label>
                 <input class="input-nomeInstituicao" type="text" name="nomeInstituicao" required="required"><br>
+                </div>
 
+                <div class="CNPJ">
                 <label for="CNPJ">CNPJ</label>
                 <input class="input-CNPJ" type="text" name="CNPJ" required="required"><br>
+                </div>
 
+                <div class="descritivo">
                 <label for="descritivo">Descritivo</label>
                 <input class="input-descritivo" type="text" name="descritivo" required="required"><br>
+                </div>
 
+                <div class="notaFiscal">
                 <label for="notaFiscal">Nota Fiscal</label>
                 <input class="input-notaFiscal" type="text" name="notaFiscal" required="required"><br>
+                </div>
 
+                <div class="projeto">
                 <label for="projeto">Projeto</label>
                 <input class="input-projeto" type="text" name="projeto" required="required"><br>
+                </div>
                 
+                <div class="dataEmissao">
                 <label for="dataEmissao">Data Emissão</label>
                 <input class="input-dataEmissao" type="text" name="dataEmissao" required="required"><br>
+                </div>
                 
+                <div class="valor">
                 <label for="valor">Valor</label>
                 <input class="input-valor" type="text" name="valor" required="required"><br>
+                </div>
+            </div>
 
-                <h1>----------------------------------------------------------------------------</h1></br>
-                
+            <div class="divFormRH2">
 
+                <img src="/img/ideaFORM2.jpg" alt="" class="imgFormulario2"></br>
                 <label for="optInstituto">Instituição: </label>
 
                 <select name="instituto" id="instituto">
@@ -66,30 +84,52 @@
                 </select></br>
 
                 <!-- APENAS PARA VALIDAR OS ENVIOS DE INFORMAÇÕES, TRATAR ESSA PARTE DEPOIS-->
+                <div class="nomeInstituicao">
                 <label for="nomeInstituicao">Nome</label>
                 <input class="input-nomeInstituicao" type="text" name="nomeInstituicao" required="required"><br>
+                </div>
 
+                <div class="CNPJ">
                 <label for="CNPJ">CNPJ</label>
                 <input class="input-CNPJ" type="text" name="CNPJ" required="required"><br>
+                </div>
 
+                <div class="descritivo">
                 <label for="descritivo">Descritivo</label>
                 <input class="input-descritivo" type="text" name="descritivo" required="required"><br>
+                </div>
 
+                <div class="notaFiscal">
                 <label for="notaFiscal">Nota Fiscal</label>
                 <input class="input-notaFiscal" type="text" name="notaFiscal" required="required"><br>
+                </div>
 
+                <div class="projeto">
                 <label for="projeto">Projeto</label>
                 <input class="input-projeto" type="text" name="projeto" required="required"><br>
+                </div>
                 
+                <div class="dataEmissao">
                 <label for="dataEmissao">Data Emissão</label>
                 <input class="input-dataEmissao" type="text" name="dataEmissao" required="required"><br>
+                </div>
                 
+                <div class="valor">
                 <label for="valor">Valor</label>
                 <input class="input-valor" type="text" name="valor" required="required"><br>
+                </div>
+            </div>
                 
-                        <button type="submit">Enviar</button>
-
+                        <button onclick="returnPage()" type="submit">Enviar</button>
+            
             </form>
-
+                <script>
+                    function returnPage() {
+                        setTimeout(() => {
+                            alert("Ideia inserida!");
+                            window.location = "/transferidos"
+                    }, 1000)
+                                            }
+                </script>
     </body>
 </html>
