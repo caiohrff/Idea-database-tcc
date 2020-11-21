@@ -103,3 +103,8 @@ body::after{
     height: 19rem;
     z-index: -1;  /*z-index é o eixo de profundidade, se aplicar -1 ele fica atrás da camada*/
 }
+
+.imgNoResults{
+    position: relative;
+    left: 250px;
+}

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário</title>
+    <title>Consumo - RH</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/styles/rh.css">
+    <link rel="stylesheet" href="/styles/consumo.css">
 </head>
 <header>
     <span id="pagina-form">
@@ -19,59 +19,94 @@
 </header>
 
     <body>
-        <p><h3> - Consumo</h3></p>
+        <p><h3>Consumo</h3></p>
             <form action="/consumptionResults" method="POST">
+                <div class="divFormRH">
+                <img src="/img/ideaFORM4.png" alt="" class="imgFormulario1"></br>
 
-                <!-- APENAS PARA VALIDAR OS ENVIOS DE INFORMAÇÕES, TRATAR ESSA PARTE DEPOIS-->
-                <label for="nomeInstituicao">Nome</label>
-                <input class="input-nomeInstituicao" type="text" name="nomeInstituicao" required="required"><br>
+                <div class="nomeInstituicao">
+                    <label for="nomeInstituicao">Nome</label>
+                    <input class="input-nomeInstituicao" type="text" name="nomeInstituicao" required="required"><br>
+                </div>
 
-                <label for="CNPJ">CNPJ</label>
-                <input class="input-CNPJ" type="text" name="CNPJ" required="required"><br>
+                <div class="CNPJ">
+                    <label for="CNPJ">CNPJ</label>
+                    <input class="input-CNPJ" type="text" placeholder="00.000.000/0000-00" name="CNPJ" required="required"><br>
+                </div>
 
-                <label for="descritivo">Descritivo</label>
-                <input class="input-descritivo" type="text" name="descritivo" required="required"><br>
+                <div class="descritivo">
+                    <label for="descritivo">Descritivo</label>
+                    <input class="input-descritivo" type="text" placeholder="Ex: Ajuda no setor.." name="descritivo" required="required"><br>
+                </div>
 
-                <label for="notaFiscal">Nota Fiscal</label>
-                <input class="input-notaFiscal" type="text" name="notaFiscal" required="required"><br>
+                <div class="notaFiscal">
+                    <label for="notaFiscal">Nota Fiscal</label>
+                    <input class="input-notaFiscal" type="text" placeholder="Ex: 0000011111A" name="notaFiscal" required="required"><br>
+                </div>
 
-                <label for="projeto">Projeto</label>
-                <input class="input-projeto" type="text" name="projeto" required="required"><br>
+                <div class="projeto">
+                    <label for="projeto">Projeto</label>
+                    <input class="input-projeto" type="text" placeholder="Ex: Refatoração do..." name="projeto" required="required"><br>
+                </div>
+
+                <div class="dataEmissao">
+                    <label for="dataEmissao">Data Emissão</label>
+                    <input class="input-dataEmissao" type="text" placeholder="Ex: 00/00/0000" name="dataEmissao" required="required"><br>
+                </div>
                 
-                <label for="dataEmissao">Data Emissão</label>
-                <input class="input-dataEmissao" type="text" name="dataEmissao" required="required"><br>
+                <div class="valor">
+                    <label for="valor">Valor</label>
+                    <input class="input-valor" type="text" placeholder="Ex: 99.999" name="valor" required="required"><br>
+                </div>
+            </div>
                 
-                <label for="valor">Valor</label>
-                <input class="input-valor" type="text" name="valor" required="required"><br>
+            <div class="divFormRH2">
+                <img src="/img/ideaFORM6.png" alt="" class="imgFormulario1"></br>
 
-                <h1>----------------------------------------------------------------------------</h1></br>
+                <div class="nomeInstituicao">
+                    <label for="nomeInstituicao">Nome</label>
+                    <input class="input-nomeInstituicao" type="text" name="nomeInstituicao" required="required"><br>
+                </div>
+
+                <div class="CNPJ">
+                    <label for="CNPJ">CNPJ</label>
+                    <input class="input-CNPJ" type="text" placeholder="00.000.000/0000-00" name="CNPJ" required="required"><br>
+                </div>
+
+                <div class="descritivo">
+                    <label for="descritivo">Descritivo</label>
+                    <input class="input-descritivo" type="text" placeholder="Ex: Polimento do..." name="descritivo" required="required"><br>
+                </div>
+
+                <div class="notaFiscal">
+                    <label for="notaFiscal">Nota Fiscal</label>
+                    <input class="input-notaFiscal" type="text" placeholder="Ex: 0000011111A" name="notaFiscal" required="required"><br>
+                </div>
+
+                <div class="projeto">
+                    <label for="projeto">Projeto</label>
+                    <input class="input-projeto" type="text" placeholder="Ex: Remanejamento..." name="projeto" required="required"><br>
+                </div>
                 
-
-                <!-- APENAS PARA VALIDAR OS ENVIOS DE INFORMAÇÕES, TRATAR ESSA PARTE DEPOIS-->
-                <label for="nomeInstituicao">Nome</label>
-                <input class="input-nomeInstituicao" type="text" name="nomeInstituicao" required="required"><br>
-
-                <label for="CNPJ">CNPJ</label>
-                <input class="input-CNPJ" type="text" name="CNPJ" required="required"><br>
-
-                <label for="descritivo">Descritivo</label>
-                <input class="input-descritivo" type="text" name="descritivo" required="required"><br>
-
-                <label for="notaFiscal">Nota Fiscal</label>
-                <input class="input-notaFiscal" type="text" name="notaFiscal" required="required"><br>
-
-                <label for="projeto">Projeto</label>
-                <input class="input-projeto" type="text" name="projeto" required="required"><br>
+                <div class="dataEmissao">
+                    <label for="dataEmissao">Data Emissão</label>
+                    <input class="input-dataEmissao" type="text" placeholder="Ex: 00/00/0000" name="dataEmissao" required="required"><br>
+                </div>
                 
-                <label for="dataEmissao">Data Emissão</label>
-                <input class="input-dataEmissao" type="text" name="dataEmissao" required="required"><br>
-                
-                <label for="valor">Valor</label>
-                <input class="input-valor" type="text" name="valor" required="required"><br>
-                
-                        <button type="submit">Enviar</button>
-
+                <div class="valor">
+                    <label for="valor">Valor</label>
+                    <input class="input-valor" type="text" placeholder="Ex: 99.999" name="valor" required="required"><br>
+                </div>
+            </div>
+                <button onclick="returnPage()" type="submit">Enviar</button>
             </form>
-
+                <script>
+                    function returnPage() {
+                        setTimeout(() => {
+                            alert("Dados inseridos!");
+                            window.location = "/back"
+                    }, 1000)
+                                            }
+                </script>
     </body>
 </html>
